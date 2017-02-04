@@ -1,6 +1,7 @@
 <img src="/icons/LnkShortenerRobo512.png" align="left" height="114">
 # LnkShortener [![Licence](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://img.shields.io/badge/license-GPLv3-blue.svg) [![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/LnkShortener) <sup> [Facebook](https://fb.com/lnkshortener) | [Website](https://android.1n.pm)</sup>
 
+
 LnkShortener is an Android app for shortening URLs. It is using [Polr](https://github.com/Cydrobolt/polr), an open-source URL shortener
 
 **[Getting Started](#getting-started) | [App Stores](#app-stores) | [Contribute](#contribute)**
@@ -12,8 +13,10 @@ You can download LnkShortener from one of the following App Stores or obtain the
 
 ## App Stores
 
-<div style="height:100px; vertical-align: middle;">
+<div style="height: 100px; vertical-align: middle; width: 260px; margin: 0; margin-left: auto; margin-right: auto;">
 <a href='https://1n.pm/lnkshortener'> <img style="vertical-align: middle;" alt='Get it on Google Play' height='100' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+<br />
+<a href='https://1n.pm/lnk_amzn'><img style="vertical-align: middle;" height="66" alt='Get it on the Amazon App Store' src='https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-underground-app-us-black.png'></a>
 <br />
 <a href="https://1n.pm/f-droid"><img style="vertical-align: middle;" src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"></a>
 </div>
