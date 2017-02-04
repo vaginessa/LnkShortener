@@ -1,6 +1,6 @@
 # LnkShortener
 <img src="/icons/LnkShortenerRobo512.png" height="114">
-<!-- [![Build Status](https://travis-ci.org/michaelachmann/LnkShortener.svg?branch=master)](https://travis-ci.org/michaelachmann/LnkShortener) //--> [![Licence](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://img.shields.io/badge/license-GPLv3-blue.svg)
+<!-- [![Build Status](https://travis-ci.org/michaelachmann/LnkShortener.svg?branch=master)](https://travis-ci.org/michaelachmann/LnkShortener) //--> [![Licence](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://img.shields.io/badge/license-GPLv3-blue.svg)<a href="https://twitter.com/LnkShortener" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @LnkShortener</a> [Twitter @LnkShortener](https://twitter.com/lnkshortener) | [Facebook](https://fb.com/lnkshortener) | [Website](https://android.1n.pm)
 
 LnkShortener is an Android app for shortening URLs. It is using [Polr](https://github.com/Cydrobolt/polr), an open-source URL shortener
 
