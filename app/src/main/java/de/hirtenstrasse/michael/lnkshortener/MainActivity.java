@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_bug:
 
-                String url = "https://github.com/michaelachmann/LnkShortener/issues/new";
+                String url = "https://github.com/michaelachmann/LnkShortener/issues/";
                 Intent intentBug = new Intent(Intent.ACTION_VIEW);
                 intentBug.setData(Uri.parse(url));
                 startActivity(intentBug);

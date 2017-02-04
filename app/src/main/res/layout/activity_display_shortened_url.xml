@@ -104,6 +104,21 @@
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:layout_weight="1" />
+        <ImageButton
+            android:id="@+id/qrCodeButton"
+            app:srcCompat="@drawable/ic_qrcode"
+            android:background="@android:color/transparent"
+            android:visibility="gone"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:textSize="48sp"
+            android:textStyle="normal|bold"
+            android:layout_marginLeft="23dp"
+            android:onClick="showQRCode"
+            android:adjustViewBounds="true"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
