@@ -57,6 +57,7 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
     String shortUrl;
     String originalUrl;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -269,7 +270,6 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
             startActivity(chooser);
         }
     }
-
 
     @Override
     public void onStart() {
