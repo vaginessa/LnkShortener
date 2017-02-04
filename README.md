@@ -1,10 +1,11 @@
-# LnkShortener
-<img src="/icons/LnkShortenerRobo512.png" height="114">
-<!-- [![Build Status](https://travis-ci.org/michaelachmann/LnkShortener.svg?branch=master)](https://travis-ci.org/michaelachmann/LnkShortener) //--> [![Licence](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://img.shields.io/badge/license-GPLv3-blue.svg) | [Twitter @LnkShortener](https://twitter.com/lnkshortener) | [Facebook](https://fb.com/lnkshortener) | [Website](https://android.1n.pm)
+<img src="/icons/LnkShortenerRobo512.png" align="left" height="114">
+# LnkShortener [![Licence](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://img.shields.io/badge/license-GPLv3-blue.svg) [![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/LnkShortener) <sup> [Facebook](https://fb.com/lnkshortener) | [Website](https://android.1n.pm)</sup>
 
 LnkShortener is an Android app for shortening URLs. It is using [Polr](https://github.com/Cydrobolt/polr), an open-source URL shortener
 
 **[Getting Started](#getting-started) | [App Stores](#app-stores) | [Contribute](#contribute)**
+
+<img style="float:right; height:500px" height="500" align="right" src="/metadata/images/ScreenshotFramedEnglish.png" >
 
 # Getting Started
 You can download LnkShortener from one of the following App Stores or obtain the latest binaries from the [Releases](https://github.com/michaelachmann/LnkShortener/releases) page.
@@ -13,9 +14,8 @@ You can download LnkShortener from one of the following App Stores or obtain the
 
 <div style="height:100px; vertical-align: middle;">
 <a href='https://1n.pm/lnkshortener'> <img style="vertical-align: middle;" alt='Get it on Google Play' height='100' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
-
-<a href='https://1n.pm/lnk_amzn'><img style="vertical-align: middle;" height="66" alt='Get it on the Amazon App Store' src='https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-underground-app-us-black.png'></a>
-    <a href="https://1n.pm/f-droid"><img style="vertical-align: middle;" src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"></a>
+<br />
+<a href="https://1n.pm/f-droid"><img style="vertical-align: middle;" src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"></a>
 </div>
 
 ## Use
