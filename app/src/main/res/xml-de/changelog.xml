@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelog>
+    <release version="1.1.0-rc.1" versioncode="4" >
+        <change>Verbesserte Erkennung von URLs: Nun werden auch Links innerhalb von Textblöcken erkannt (die mit LnkShortener geteilt werden)</change>
+        <change>LnkShortener erkennt nun verkürzte URLs und kann sie wieder umkehren</change>
+        <change>QR-Code für die verkürzte URL wurde hinzugefügt</change>
+        <change>Verbesserungen bei den Fehlermeldungen</change>
+        <change>Link zum Fehlermelden im Menü hinzugefügt</change>
+        <change>Github und Twitter Button hinzugefügt. Folge @LnkShortener</change>
+        <change>Besuche android.1n.pm</change>
+    </release>
+    <release version="1.0.2" versioncode="3" >
+        <change>Japanische Übersetzung hinzugefügt</change>
+    </release>
+    <release version="1.0.1" versioncode="1">
+        <change>Aus Lizenzgründen wurde eine Google Bibliothek aus der App entfernt, um sie für F-Droid vorzubereite</change>
+    </release>
+    <realease version="1.0" versioncode="1">
+        <change>Erstveröffentlichung</change>
+    </realease>
+</changelog>
