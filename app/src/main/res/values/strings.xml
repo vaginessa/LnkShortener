@@ -17,11 +17,14 @@
     <string name="error_generic_url">Please check the provided URL. Is it maybe a system URL?</string>
     <string name="error_system_url">Shortening of system URLs is not supported.</string>
     <string name="error_404">Try Again.</string>
+    <string name="no_url">No URL was found.</string>
     <string name="error_quota">You have exceeded your quota.</string>
     <string name="error_internal">Internal Server Error.</string>
     <string name="error_misc">Please check your Polr settings!</string>
     <string name="open_chooser_title">Open this link via</string>
     <string name="copied_to_clipboard">Copied to Clipboard</string>
+
+    <string name="expanded_url">Expanded URL</string>
 
     <string name="activity_display_url">Shortened URL</string>
 

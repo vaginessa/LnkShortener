@@ -52,6 +52,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 import net.glxn.qrgen.android.QRCode;
 
@@ -105,7 +106,17 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
         } else {
             // Received the Intent from a foreign App
 
-            originalUrl = intent.getStringExtra(Intent.EXTRA_TEXT);
+            String intentText = intent.getStringExtra(Intent.EXTRA_TEXT);
+            List<String> intentUrls = urlmanager.findURLs(intentText);
+
+            if(intentUrls.size() > 0) {
+                originalUrl = intentUrls.get(0);
+            } else {
+                errorNoURL();
+                return;
+            }
+
+
         }
 
         checkURL();
@@ -154,6 +165,23 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
         // And start the MainActivity
         startActivity(intent);
+
+        // At the same time we finish() since the data in this Activity shall be purged
+        // (The visible / gone / hidden settings need to be reset)
+        finish();
+
+    }
+
+
+    private void errorNoURL() {
+        // This is called if some error happened
+        // Here we set up the first vars
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context,  getString(R.string.no_url), duration);
+
+        // We show the error toast
+        toast.show();
 
         // At the same time we finish() since the data in this Activity shall be purged
         // (The visible / gone / hidden settings need to be reset)
@@ -212,6 +240,13 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
      */
     private void expandUrl(){
 
+        // Changing the Title since we're not shortening the URL anymore
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle(getString(R.string.expanded_url));
+
+
+        String encodedEnding = "";
+
         // Instantiate Volley for Networking
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -227,8 +262,16 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
         String ending = shortURL.getPath();
         ending = ending.substring(1);
 
+        // Tries to encode the URL
+        try {
+            encodedEnding = URLEncoder.encode(ending, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+
         // Assembles the URL and starts the API-Request
-        String url = apiUrl+"/api/v2/action/lookup?key="+apiKey+"&ending="+ending;
+        String url = apiUrl+"/api/v2/action/lookup?key="+apiKey+"&url_ending="+encodedEnding;
         Log.d("URL", url);
         // Actual Request to the API
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,

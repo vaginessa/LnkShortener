@@ -9,7 +9,11 @@ import android.webkit.URLUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // Copyright (C) 2017 Michael Achmann
 
@@ -133,6 +137,21 @@ public class UrlManager {
 
 
         return isOnApi;
+    }
+
+    public static List<String> findURLs(String url){
+
+        List<String> urls = new ArrayList<String>();
+        String regex = "((https?):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher urlMatcher = pattern.matcher(url);
+
+        while(urlMatcher.find()){
+            urls.add(url.substring(urlMatcher.start(0), urlMatcher.end(0)));
+        }
+
+
+        return urls;
     }
 
 

@@ -50,7 +50,13 @@
         android:textStyle="normal|bold"
         android:textColor="@color/colorPrimaryDark"
         android:visibility="gone"
-        />
+        android:maxLines="5"
+        android:scrollbars="vertical"
+        android:ellipsize="middle"
+        android:fadeScrollbars="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        tools:scrollbarAlwaysDrawVerticalTrack="false" />
 
     <LinearLayout
         android:orientation="horizontal"
