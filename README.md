@@ -54,6 +54,11 @@ If you have Ideas feel free to open an Issues or contact [Michael](https://githu
 >You should have received a copy of the GNU General Public License
 >along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# Dependencies
+
+* For QRCode support LnkShortener depends on [QRGen](https://github.com/kenglxn/QRGen), which is licensed under Apache 2.0
+* LnkShortener is using [ckChangeLog](https://github.com/cketti/ckChangeLog)
+
 # Legal Attributions
 ## Google Play Logo
 >Google Play and the Google Play logo are trademarks of Google Inc.

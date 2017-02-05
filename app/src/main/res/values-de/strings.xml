@@ -16,4 +16,15 @@
     <string name="error_misc">Bitte überprüfe deine Polr Einstellungen!</string>
     <string name="settings_api_key">API-Schlüssel</string>
     <string name="settings_domain">Domain</string>
+    <string name="action_history">Verlauf</string>
+    <string name="action_bug">Bug melden</string>
+    <string name="about_changelog">LnkShortener verwendet <a href="https://github.com/cketti/ckChangeLog">ckChangeLog</a>, das Paket ist mit der Apache-2 Lizenz versehen.</string>
+    <string name="about_qrgen">Die QR-Code Funktion basiert auf <a href="https://github.com/kenglxn/QRGen">QRGen</a>, das Paket ist mit Apache-2 lizensiert</string>
+    <string name="about_title">LnkShortener ist unter der GPL-3 Lizenz veröffentlich</string>
+    <string name="action_about">Über LnkShortener</string>
+    <string name="error_generic_url">Bitter überprüfe die URL. Handelt es sich vielleicht um eine System-URL?</string>
+    <string name="error_system_url">System-URLs können nicht verkürzt werden.</string>
+    <string name="expanded_url">Erweiterte URL</string>
+    <string name="no_url">URL konnte nicht gefunden werden</string>
+    <string name="source_code">Der Quellecode von LnkShortener ist auf  <a href="https://github.com/michaelachmann/LnkShortener">Github</a> verfügbar</string>
 </resources>

@@ -17,6 +17,7 @@ package de.hirtenstrasse.michael.lnkshortener;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,15 +32,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
+import de.cketti.library.changelog.ChangeLog;
+
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "de.hirtenstrasse.michael.lnkshortener.MESSAGE";
     public final static String ACTIVITY_MESSAGE = "de.hirtenstrasse.michael.lnkshortener.ACTIVITY";
     String originalUrl;
     String errorMessage;
+    private UrlManager urlmanager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        urlmanager = new UrlManager(this);
 
         // Needed at every entrypoint to the App
         PreferenceManager.setDefaultValues(this, R.xml.main_settings, false);
@@ -79,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.fragment_container, mainFragment);
         transaction.commit();
 
+        // Show the Changelog if a new Version is installed
+        ChangeLog cl = new ChangeLog(this);
+        if (cl.isFirstRun()) {
+            cl.getLogDialog().show();
+        }
+
     }
 
     public void shortenLink(View view) {
@@ -97,9 +109,12 @@ public class MainActivity extends AppCompatActivity {
         // URL as typed into the TextEdit
         originalUrl = urlInput.getText().toString();
 
+        // Remove trailing and leading whitespaces
+        originalUrl = originalUrl.trim();
+
         // If originalUrl is a valide URL it is passed on
-        if(validateURL(originalUrl)){
-            originalUrl = guessUrl(originalUrl);
+        if(urlmanager.validateURL(originalUrl)){
+            originalUrl = UrlManager.guessUrl(originalUrl);
             intent.putExtra(EXTRA_MESSAGE, originalUrl);
             intent.putExtra(ACTIVITY_MESSAGE, true);
 
@@ -122,20 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // URL Validation
-    public boolean validateURL(String url){
-
-        return Patterns.WEB_URL.matcher(url).matches();
-    }
-
-    // If the URL is valid this function adds e.g. http:// (the protocol) to the URL, if missing
-    public String guessUrl(String url){
-        String returnurl = URLUtil.guessUrl(url);
-
-        return returnurl;
-    }
-
-
     // Adds the main menu to the Activity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,6 +156,43 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
+            case R.id.action_bug:
+                // Opens Issuetracker on Github in a Browser
+                String url = "https://github.com/michaelachmann/LnkShortener/issues/";
+                Intent intentBug = new Intent(Intent.ACTION_VIEW);
+                intentBug.setData(Uri.parse(url));
+                startActivity(intentBug);
+
+                return true;
+
+            case R.id.action_history:
+                // Perparing Fragment
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                // LinkHistoryFragment is the start screen
+                LinkHistoryFragment linkHistoryFragment = new LinkHistoryFragment();
+
+                // Finally LinkHistoryFragment is added to the main container
+                transaction.replace(R.id.fragment_container, linkHistoryFragment);
+                transaction.addToBackStack("");
+                transaction.commit();
+
+            case R.id.action_about:
+                // Perparing Fragment
+                FragmentTransaction aboutTransaction = getFragmentManager().beginTransaction();
+
+                // LinkHistoryFragment is the start screen
+                AboutFragment aboutFragment = new AboutFragment();
+
+                // Finally LinkHistoryFragment is added to the main container
+                aboutTransaction.replace(R.id.fragment_container, aboutFragment);
+                aboutTransaction.addToBackStack("");
+                aboutTransaction.commit();
+
+
+
+
+
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -162,7 +200,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-
 
 }
