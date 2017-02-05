@@ -31,7 +31,14 @@
     <string name="settings_domain">Set Domain</string>
     <string name="settings_api_key">Set API key</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- Strings for About Fragment -->
+    <string name="source_code">The source code of LnkShortener is available on <a href="https://github.com/michaelachmann/LnkShortener">Github</a></string>
+    <string name="about_changelog">LnkShortener is using <a href="https://github.com/cketti/ckChangeLog">ckChangeLog</a> which is released under the Apache 2.0 licence</string>
+    <string name="action_about">About</string>
+    <string name="about_title">LnkShortener is released under the GPL 3 Licence</string>
+    <string name="about_licence" translatable="false">Copyright (C) 2017 Michael Achmann  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.  You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</string>
+    <string name="about_qrgen">The QR code functionality is powered by <a href="https://github.com/kenglxn/QRGen">QRGen</a>, which is licensed under Apache 2.0</string>
 
 </resources>

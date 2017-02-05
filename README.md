@@ -57,6 +57,7 @@ If you have Ideas feel free to open an Issues or contact [Michael](https://githu
 # Dependencies
 
 * For QRCode support LnkShortener depends on [QRGen](https://github.com/kenglxn/QRGen), which is licensed under Apache 2.0
+* LnkShortener is using [ckChangeLog](https://github.com/cketti/ckChangeLog)
 
 # Legal Attributions
 ## Google Play Logo

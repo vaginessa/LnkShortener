@@ -15,7 +15,6 @@ package de.hirtenstrasse.michael.lnkshortener;
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -23,18 +22,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -66,11 +62,12 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
     // Setting up Strings which will be used class-wide
     String shortUrl, originalUrl, apiKey, apiUrl;
     private UrlManager urlmanager;
-
+    private boolean foreignIntent = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        // URLManager provides all functions handling URLs
         urlmanager = new UrlManager(this);
 
 
@@ -105,13 +102,18 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
         } else {
             // Received the Intent from a foreign App
+            foreignIntent = true;
 
+            // Parse String which came from the Intent for Links
             String intentText = intent.getStringExtra(Intent.EXTRA_TEXT);
             List<String> intentUrls = urlmanager.findURLs(intentText);
 
+            // If there were links amongst the text we use the first one.
+            // TODO For future Version we could include a dialog for choosing the link to shorten
             if(intentUrls.size() > 0) {
                 originalUrl = intentUrls.get(0);
             } else {
+                // No URL was found, go on and show an error toast and immediatelly finish();
                 errorNoURL();
                 return;
             }
@@ -123,6 +125,9 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
     }
 
+    /*
+     * checkURL() determines what kind of URL we're dealing with. Either passes it on to shorten, expand or error
+     */
     private void checkURL(){
         int urlType = urlmanager.getURLType(originalUrl);
 
@@ -139,11 +144,13 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
     }
 
     private void linkError(int errorCode) {
+
         // This is called if some error happened
         // Here we set up the first vars
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context,  getString(R.string.error_toast), duration);
+        Toast toast;
+
 
         // Whatever happened we want to return to the start Activity. If possible with
         // some information about what went wrong. Therefore we can already set the Intent up
@@ -154,17 +161,23 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
         // If we can determine the type of the error we add an Error message:
         switch(errorCode){
             case 2:
+                toast = Toast.makeText(context,  getString(R.string.error_system_url), duration);
                 intent.putExtra(ERROR_MESSAGE, getString(R.string.error_system_url));
                 break;
             default:
+                toast = Toast.makeText(context,  getString(R.string.error_generic_url), duration);
                 intent.putExtra(ERROR_MESSAGE, getString(R.string.error_generic_url));
+        }
+
+
+        if(!foreignIntent) {
+            // And start the MainActivity (if the Intent didn't come through a Share)
+            toast = Toast.makeText(context,  getString(R.string.error_toast), duration);
+            startActivity(intent);
         }
 
         // We show the error toast
         toast.show();
-
-        // And start the MainActivity
-        startActivity(intent);
 
         // At the same time we finish() since the data in this Activity shall be purged
         // (The visible / gone / hidden settings need to be reset)
@@ -218,6 +231,7 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
                         // If we receive a proper Response we set the response as the shortened URL
                         shortUrl = response;
 
+
                         // Trigger function which uses class-wide shortUrl variable in order to
                         // update the View with the actual shortened URL
                         showShortenedUrl();
@@ -237,6 +251,8 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
     /*
      * Expands shortened URLs via API
+     * TODO Swap to JSON
+     *
      */
     private void expandUrl(){
 
@@ -272,7 +288,7 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
         // Assembles the URL and starts the API-Request
         String url = apiUrl+"/api/v2/action/lookup?key="+apiKey+"&url_ending="+encodedEnding;
-        Log.d("URL", url);
+
         // Actual Request to the API
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -298,12 +314,6 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    /*
-     * The URL is a Polr System URL, error is returned
-     */
-    private void systemUrlError(){
-
-    }
 
     /*
      * Called once the API call has been finished. Turns the Buttons and shortened link visible.
@@ -411,6 +421,9 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
     }
 
+    /*
+     * Called from the interface. Shares the shortened / extended URL with any app
+     */
     public void shareLink(View view) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
@@ -420,6 +433,10 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
     }
 
+    /*
+     * Shows a Dialog with a QR code for the URL
+     * TODO Share and Copy functions for the QR Code. Dynamic Dialog / QR Code Size
+     */
     public void showQRCode(View view){
 
         Dialog qrCodeDialog = new Dialog(this);
@@ -445,7 +462,9 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
     }
 
-
+    /*
+     * Copy shortened / extended Link to Clipboard
+     */
     public void copyLink(View view){
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Short Link", shortUrl);
@@ -459,6 +478,9 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
     }
 
+    /*
+     * Opens shortened / expanded Link in Browser
+     */
     public void openLink(View view){
         Uri webpage = Uri.parse(shortUrl);
         Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);

@@ -32,6 +32,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
+import de.cketti.library.changelog.ChangeLog;
+
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "de.hirtenstrasse.michael.lnkshortener.MESSAGE";
     public final static String ACTIVITY_MESSAGE = "de.hirtenstrasse.michael.lnkshortener.ACTIVITY";
@@ -82,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
         // Finally MainFragment is added to the main container
         transaction.replace(R.id.fragment_container, mainFragment);
         transaction.commit();
+
+        // Show the Changelog if a new Version is installed
+        ChangeLog cl = new ChangeLog(this);
+        if (cl.isFirstRun()) {
+            cl.getLogDialog().show();
+        }
 
     }
 
@@ -149,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_bug:
-
+                // Opens Issuetracker on Github in a Browser
                 String url = "https://github.com/michaelachmann/LnkShortener/issues/";
                 Intent intentBug = new Intent(Intent.ACTION_VIEW);
                 intentBug.setData(Uri.parse(url));
@@ -169,6 +177,17 @@ public class MainActivity extends AppCompatActivity {
                 transaction.addToBackStack("");
                 transaction.commit();
 
+            case R.id.action_about:
+                // Perparing Fragment
+                FragmentTransaction aboutTransaction = getFragmentManager().beginTransaction();
+
+                // LinkHistoryFragment is the start screen
+                AboutFragment aboutFragment = new AboutFragment();
+
+                // Finally LinkHistoryFragment is added to the main container
+                aboutTransaction.replace(R.id.fragment_container, aboutFragment);
+                aboutTransaction.addToBackStack("");
+                aboutTransaction.commit();
 
 
 

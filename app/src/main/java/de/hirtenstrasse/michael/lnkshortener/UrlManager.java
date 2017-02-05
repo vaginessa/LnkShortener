@@ -3,7 +3,7 @@ package de.hirtenstrasse.michael.lnkshortener;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
+
 import android.util.Patterns;
 import android.webkit.URLUtil;
 
@@ -29,6 +29,11 @@ import java.util.regex.Pattern;
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+/*
+ * Several functions for checking and preparing links for the shortening / expanding process
+ */
+
 
 public class UrlManager {
 
@@ -78,6 +83,10 @@ public class UrlManager {
         return type;
     }
 
+    /*
+     * Checks whether the link is shortened by API-Service
+     */
+
     public static boolean isShortenedURL(String url){
 
         if(!isOnApiHost(url)){
@@ -88,6 +97,10 @@ public class UrlManager {
 
         return false;
     }
+
+    /*
+     * Checks whether it is a System URL
+     */
 
     public static boolean isSystemURL(String url){
 
@@ -100,17 +113,19 @@ public class UrlManager {
             e.printStackTrace();
         }
 
-        Log.d("Path", receivedUrl.getPath());
-
         if(!isOnApiHost(url)){
             return false;
         } else if(Arrays.asList(systemPaths).contains(receivedUrl.getPath())){
-            Log.d("Match", "Matched one of the SystemPaths");
+
             return true;
         }
 
         return false;
     }
+
+    /*
+     * Checks whether the Link is from the API-Domain
+     */
 
     public static boolean isOnApiHost(String url){
         // Instantiate Variables
@@ -126,18 +141,19 @@ public class UrlManager {
             e.printStackTrace();
         }
 
-        Log.d("receivedURL:", receivedURL.getHost());
-        Log.d("apiURL", apiURL.getHost());
-
         if(receivedURL.getHost().equals(apiURL.getHost())){
             isOnApi = true;
-            Log.d("Match","Received and API matched");
+
         }
 
 
 
         return isOnApi;
     }
+
+    /*
+     * Finds URLs in any Text and returns them as a List
+     */
 
     public static List<String> findURLs(String url){
 
