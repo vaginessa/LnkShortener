@@ -4,10 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
      >
 
+    <!-- History Button is yet hidden since implementation is postponed to 1.2.0 release -->
     <item android:id="@+id/action_history"
         android:title="@string/action_history"
         app:showAsAction="always"
-
+        android:visible="false"
         android:icon="@drawable/ic_history_white_24dp"
         />
 

@@ -15,12 +15,15 @@ package de.hirtenstrasse.michael.lnkshortener;
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
@@ -28,6 +31,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -57,6 +63,7 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
     String shortUrl;
     String originalUrl;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -80,7 +87,7 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
         final ImageButton openLinkButton = (ImageButton) findViewById(R.id.openLinkButton);
         final ImageButton copyLinkButton = (ImageButton) findViewById(R.id.copyLinkButton);
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        final ImageView qrCodeImageView = (ImageView) findViewById(R.id.imageViewQrCode);
+        final ImageButton qrCodeButton = (ImageButton) findViewById(R.id.qrCodeButton);
 
         // Setting up Toolbar
         Toolbar mainToolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -130,14 +137,7 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
                         // We set the shortened URL as Label
                         viewShortenedUrl.setText(shortUrl);
 
-                        // Generate QR-Code for ShortLink
-                        Bitmap qrCode = QRCode.from(shortUrl)
-                                .withSize(250,250)
-                                .withColor(0xFF000000, 0x00000000)
-                                .bitmap();
 
-                        // Set QRCode ad Image
-                        qrCodeImageView.setImageBitmap(qrCode);
 
                         // Now we hide the loading-spinner and set the Buttons and Texts as vissible
                         progressBar.setVisibility(View.GONE);
@@ -145,7 +145,7 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
                         shareButton.setVisibility(View.VISIBLE);
                         openLinkButton.setVisibility(View.VISIBLE);
                         copyLinkButton.setVisibility(View.VISIBLE);
-                        qrCodeImageView.setVisibility(View.VISIBLE);
+                        qrCodeButton.setVisibility(View.VISIBLE);
 
 
                     }
@@ -244,6 +244,32 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
     }
 
+    public void showQRCode(View view){
+
+        Dialog qrCodeDialog = new Dialog(this);
+        qrCodeDialog.getWindow()
+                .requestFeature(Window.FEATURE_NO_TITLE);
+
+        qrCodeDialog.setContentView(getLayoutInflater().inflate(R.layout.qr_popup
+                , null));
+
+        final ImageView qrCodeImageView = (ImageView) qrCodeDialog.findViewById(R.id.qrCodeImageView);
+
+
+        // Generate QR-Code for ShortLink
+        Bitmap qrCode = QRCode.from(shortUrl)
+                .withSize(800,800)
+                .withColor(0xFF000000, 0x00000000)
+                .bitmap();
+
+        // Set QRCode ad Image
+        qrCodeImageView.setImageBitmap(qrCode);
+
+        qrCodeDialog.show();
+
+    }
+
+
     public void copyLink(View view){
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Short Link", shortUrl);
@@ -269,7 +295,6 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
             startActivity(chooser);
         }
     }
-
 
     @Override
     public void onStart() {

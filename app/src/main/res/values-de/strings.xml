@@ -16,4 +16,6 @@
     <string name="error_misc">Bitte überprüfe deine Polr Einstellungen!</string>
     <string name="settings_api_key">API-Schlüssel</string>
     <string name="settings_domain">Domain</string>
+    <string name="action_history">Verlauf</string>
+    <string name="action_bug">Bug melden</string>
 </resources>

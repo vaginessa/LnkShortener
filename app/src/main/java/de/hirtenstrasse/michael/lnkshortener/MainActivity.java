@@ -21,7 +21,6 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         originalUrl = intent.getStringExtra(DisplayShortenedUrlActivity.EXTRA_MESSAGE);
         errorMessage = intent.getStringExtra(DisplayShortenedUrlActivity.ERROR_MESSAGE);
 
-        // If an error occured in in DisplayShortenedUrlActivity they are passed on to MainFragment
+        // If an error occurred in in DisplayShortenedUrlActivity they are passed on to MainFragment
         if (intent.getBooleanExtra(DisplayShortenedUrlActivity.ERROR_BOOL, false)) {
             mainFragmentBundle.putBoolean("error", true);
             mainFragmentBundle.putString("errorMessage", errorMessage);
@@ -159,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_bug:
 
-                String url = "https://github.com/michaelachmann/LnkShortener/issues/new";
+                String url = "https://github.com/michaelachmann/LnkShortener/issues/";
                 Intent intentBug = new Intent(Intent.ACTION_VIEW);
                 intentBug.setData(Uri.parse(url));
                 startActivity(intentBug);
