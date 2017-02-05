@@ -14,6 +14,8 @@
     <string name="chooser_title">Share this Link via</string>
     <string name="error_valid_url">Please enter a valid URL.</string>
     <string name="error_unauthorized">API-Backend Unauthorized.</string>
+    <string name="error_generic_url">Please check the provided URL. Is it maybe a system URL?</string>
+    <string name="error_system_url">Shortening of system URLs is not supported.</string>
     <string name="error_404">Try Again.</string>
     <string name="error_quota">You have exceeded your quota.</string>
     <string name="error_internal">Internal Server Error.</string>

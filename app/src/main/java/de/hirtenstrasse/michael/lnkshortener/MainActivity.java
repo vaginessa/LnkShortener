@@ -37,10 +37,13 @@ public class MainActivity extends AppCompatActivity {
     public final static String ACTIVITY_MESSAGE = "de.hirtenstrasse.michael.lnkshortener.ACTIVITY";
     String originalUrl;
     String errorMessage;
+    private UrlManager urlmanager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        urlmanager = new UrlManager(this);
 
         // Needed at every entrypoint to the App
         PreferenceManager.setDefaultValues(this, R.xml.main_settings, false);
@@ -98,9 +101,12 @@ public class MainActivity extends AppCompatActivity {
         // URL as typed into the TextEdit
         originalUrl = urlInput.getText().toString();
 
+        // Remove trailing and leading whitespaces
+        originalUrl = originalUrl.trim();
+
         // If originalUrl is a valide URL it is passed on
-        if(validateURL(originalUrl)){
-            originalUrl = guessUrl(originalUrl);
+        if(urlmanager.validateURL(originalUrl)){
+            originalUrl = UrlManager.guessUrl(originalUrl);
             intent.putExtra(EXTRA_MESSAGE, originalUrl);
             intent.putExtra(ACTIVITY_MESSAGE, true);
 
@@ -122,20 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    // URL Validation
-    public boolean validateURL(String url){
-
-        return Patterns.WEB_URL.matcher(url).matches();
-    }
-
-    // If the URL is valid this function adds e.g. http:// (the protocol) to the URL, if missing
-    public String guessUrl(String url){
-        String returnurl = URLUtil.guessUrl(url);
-
-        return returnurl;
-    }
-
 
     // Adds the main menu to the Activity
     @Override
