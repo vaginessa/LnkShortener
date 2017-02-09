@@ -201,4 +201,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Opens the GitHub Repo in a Browser
+    public void onClickGitHub(View view){
+        String url = "https://github.com/michaelachmann/LnkShortener/";
+        Intent intentGitHub = new Intent(Intent.ACTION_VIEW);
+        intentGitHub.setData(Uri.parse(url));
+        startActivity(intentGitHub);
+    }
+
 }

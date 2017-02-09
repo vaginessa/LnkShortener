@@ -1,6 +1,7 @@
 package de.hirtenstrasse.michael.lnkshortener;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -45,6 +46,8 @@ public class AboutFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
+
 
 
 }

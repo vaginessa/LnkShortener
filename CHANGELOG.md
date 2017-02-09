@@ -1,3 +1,10 @@
+# 1.1.0
+## Versionscode 
+* Small Bugfixes
+* Small fixes for English and German language
+* Added Attributions to About page
+* Added Link to GitHub
+
 # 1.1.0-rc.1
 ## Versioncode 4
 * Improved recognition of URLs: Links are now also detected if inside a block of text
