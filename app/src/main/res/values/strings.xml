@@ -16,7 +16,7 @@
     <string name="error_unauthorized">API-Backend Unauthorized.</string>
     <string name="error_generic_url">Please check the provided URL. Is it maybe a system URL?</string>
     <string name="error_system_url">Shortening of system URLs is not supported.</string>
-    <string name="error_404">Try Again.</string>
+    <string name="error_404">This shortened URL does not exist.</string>
     <string name="no_url">No URL was found.</string>
     <string name="error_quota">You have exceeded your quota.</string>
     <string name="error_internal">Internal Server Error.</string>
@@ -40,5 +40,6 @@
     <string name="about_title">LnkShortener is released under the GPL 3 Licence</string>
     <string name="about_licence" translatable="false">Copyright (C) 2017 Michael Achmann  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.  You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</string>
     <string name="about_qrgen">The QR code functionality is powered by <a href="https://github.com/kenglxn/QRGen">QRGen</a>, which is licensed under Apache 2.0</string>
-
+    <string name="logo_licence" translatable="false">The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
+    <string name="qrbutton_attribution">The material QR-Code button was made by Austin Andrews @Templarian</string>
 </resources>

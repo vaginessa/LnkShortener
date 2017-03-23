@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.1.0" versioncode="5" >
+        <change>Kleine Fehlerbehebungen</change>
+        <change>Kleine Verbesserungen in der Englischen und Deutschen Übersetzung</change>
+        <change>Weitere Lizenzhinweise wurden in die "Über LnkShortener"-Seite aufgenommen</change>
+        <change>Link zu GitHub hinzugefügt</change>
+    </release>
     <release version="1.1.0-rc.1" versioncode="4" >
         <change>Verbesserte Erkennung von URLs: Nun werden auch Links innerhalb von Textblöcken erkannt (die mit LnkShortener geteilt werden)</change>
         <change>LnkShortener erkennt nun verkürzte URLs und kann sie wieder umkehren</change>

@@ -8,14 +8,45 @@
             color: transparent;
             }
 
+        .twitter  {
+    border-radius: 4px; /* to mimic the curved edges of the count box */
+    border-right: 1px solid #AAAAAA; /* this is the width and color of the count box border */
+    height: 20px; /* this height works for the medium button */
+    width: 88px; /* precise width to hide the word */
+    overflow: hidden; /* actually hides the word */
+    }
     </style>
+
+    <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
 </head>
 <body><div style="color:transpartent; width: 100%; margin-left: auto; margin-right:auto; margin: 0 auto; text-align: center">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script src="https://buttons.github.io/buttons.js"></script>
     <!-- Place this tag where you want the button to render. -->
-    <a class="github-button" href="https://github.com/michaelachmann/lnkshortener" data-count-href="/michaelachmann/lnkshortener/stargazers" data-count-api="/repos/michaelachmann/lnkshortener#stargazers_count" data-count-aria<-label="# stargazers on GitHub" aria-label="Star michaelachmann/lnkshortener on GitHub">Star</a>
-    <a href="https://twitter.com/lnkshortener"><img src="https://camo.githubusercontent.com/36e55146bb7d47dcdc988ac351e90e88e48d12d4/68747470733a2f2f696d672e736869656c64732e696f2f747769747465722f666f6c6c6f772f6c6e6b73686f7274656e65722e7376673f7374796c653d736f6369616c266c6162656c3d466f6c6c6f77" alt="Twitter Follow" data-canonical-src="https://img.shields.io/twitter/follow/lnkshortener.svg?style=social&amp;label=Follow" style="max-width:100%;"></a>
+    <a class="github-button" href="https://github.com/michaelachmann/lnkshortener" data-count-href="/michaelachmann/lnkshortener/stargazers" data-count-api="/repos/michaelachmann/lnkshortener#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star michaelachmann/lnkshortener on GitHub">Star</a>
+    <span clas="twitter">
+    <a class="twitter-follow-button"
+       data-show-screen-name="false"
+       data-count-api="false"
+       href="https://twitter.com/LnkShortener">
+        Follow @LnkShortener</a>
+    </span>
 </div>
 </body>
 </html>

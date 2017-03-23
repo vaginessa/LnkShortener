@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.1.0" versioncode="5" >
+        <change>Small Bugfixes</change>
+        <change>Small fixes for English and German language</change>
+        <change>Added Attributions to About page</change>
+        <change>Added Link to GitHub</change>
+    </release>
     <release version="1.1.0-rc.1" versioncode="4" >
         <change>Improved recognition of URLs: Links are now also detected if inside a block of text</change>
         <change>LnkShortener now recognizes shortened links and expands them</change>
