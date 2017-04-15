@@ -1,0 +1,95 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="de.hirtenstrasse.michael.lnkshortener.SetupStep1Fragment"
+    android:padding="15dp">
+
+    <!-- TODO: Update blank fragment layout -->
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="@string/setup1_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView10"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:textSize="28sp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:text="@string/setup_introduction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:text="@string/setup_choose_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9"
+            android:textStyle="normal|bold"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/firstSelectionRadioGroup">
+
+            <RadioButton
+                android:text="@string/setup_1npm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/defaultRadio"
+                android:checked="true"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="@string/setup_custom_server"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/customRadio"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:text="@string/setup_keep_settings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                android:id="@+id/keepRadio" />
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_height="wrap_content">
+
+
+
+        <Button
+            android:text="@string/setup_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="nextClickSetup1"
+            android:id="@+id/nextButton" />
+    </LinearLayout>
+</FrameLayout>

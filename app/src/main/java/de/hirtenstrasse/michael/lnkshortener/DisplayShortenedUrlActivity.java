@@ -205,6 +205,7 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
     /*
      * Triggers the API Request and starts the showShortenedLink() or apiError() functions accordingly
      * TODO: Swap to JSON Version!
+     * TODO: Add to custom class
      */
     private void shortenUrl(){
 

@@ -32,7 +32,6 @@
     <string name="settings_api_key">Set API key</string>
 
 
-
     <!-- Strings for About Fragment -->
     <string name="source_code">The source code of LnkShortener is available on <a href="https://github.com/michaelachmann/LnkShortener">Github</a></string>
     <string name="about_changelog">LnkShortener is using <a href="https://github.com/cketti/ckChangeLog">ckChangeLog</a> which is released under the Apache 2.0 licence</string>
@@ -42,4 +41,37 @@
     <string name="about_qrgen">The QR code functionality is powered by <a href="https://github.com/kenglxn/QRGen">QRGen</a>, which is licensed under Apache 2.0</string>
     <string name="logo_licence" translatable="false">The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
     <string name="qrbutton_attribution">The material QR-Code button was made by Austin Andrews @Templarian</string>
+
+
+    <!-- Strings for Settings -->
+    <string name="android_id">Unique Installation ID</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setup1_title">LnkShortener Setup</string>
+    <string name="setup_introduction">LnkShortener uses a Polr-Interface in order to shorten URLs from your smartphone. You can use LnkShortener with your own Polr installation or use the default service 1n.pm</string>
+    <string name="setup_custom_server">I want to use my own Polr-Installation</string>
+    <string name="setup_1npm">I want to use 1n.pm (default)</string>
+    <string name="setup_next">Next</string>
+    <string name="setup_choose_title">How do you want to use LnkShortener?</string>
+    <string name="setup_keep_settings">I want to keep my settings</string>
+    <string name="setup_button_back">Back</string>
+    <string name="setup_title_custom">Add your own Polr-Server</string>
+    <string name="setup_check_api">Check</string>
+    <string name="setup_custom_domain">URL of your installation</string>
+    <string name="setup_api_key">API Key</string>
+    <string name="setup_use_default">Use 1n.pm</string>
+    <string name="setup_anonymous">Stay Anonymous</string>
+    <string name="setup_login">Login</string>
+    <string name="setup_agree_tos">I hereby agree to the Terms of Service (TOS) for using 1n.pm</string>
+    <string name="setup_username">Username</string>
+    <string name="setup_password">Password</string>
+    <string name="setup_signup">Signup</string>
+    <string name="setup_lost_password">Reset Password</string>
+    <string name="setup_title_tos">Terms of Service (TOS)</string>
+    <string name="setup_login_signup">Login or Signup</string>
+    <string name="setup_create_anonymous_account">Creating Anonymous Account...</string>
+    <string name="setup_finish">Finish</string>
 </resources>

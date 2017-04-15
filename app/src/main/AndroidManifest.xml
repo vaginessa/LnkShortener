@@ -10,9 +10,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            >
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,9 +21,9 @@
         </activity>
         <activity
             android:name=".DisplayShortenedUrlActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/activity_display_url"
-            android:parentActivityName=".DisplayShortenedUrlActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            android:parentActivityName=".DisplayShortenedUrlActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisplayShortenedUrlActivity" />
@@ -36,16 +36,16 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".SettingsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/activity_settings"
-            android:parentActivityName=".DisplayShortenedUrlActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            android:parentActivityName=".DisplayShortenedUrlActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisplayShortenedUrlActivity" />
         </activity>
+        <activity android:name=".SetupActivity"></activity>
     </application>
 
 </manifest>
