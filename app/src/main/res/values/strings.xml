@@ -74,4 +74,6 @@
     <string name="setup_login_signup">Login or Signup</string>
     <string name="setup_create_anonymous_account">Creating Anonymous Account...</string>
     <string name="setup_finish">Finish</string>
+    <string name="setup_login_title">1n.pm Login</string>
+    <string name="setup_email">E-Mail</string>
 </resources>
