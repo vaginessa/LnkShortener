@@ -45,7 +45,7 @@
             android:text="@string/setup_custom_domain" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/urlEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -59,18 +59,12 @@
             android:text="@string/setup_api_key" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/apiEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="8a4a2c54d582048c31aa85baaeb3f8"
             android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/setup_check_api" />
 
 
     </LinearLayout>
@@ -89,16 +83,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="backToSetp1Fragment"
+            android:onClick="backToSetup1Fragment"
             android:text="@string/setup_button_back" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/checkButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:enabled="false"
-            android:text="@string/setup_next" />
+            android:text="@string/setup_check_api" />
+
     </LinearLayout>
 
 </FrameLayout>

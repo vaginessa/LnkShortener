@@ -48,11 +48,11 @@
                 android:text="@string/setup_username" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/usernameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="user1234"
+                android:hint="@string/setup_example_username"
                 android:inputType="textPersonName" />
 
             <TextView
@@ -62,11 +62,11 @@
                 android:text="@string/setup_password" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="1234567"
+                android:hint="@string/setup_exmaple_password"
                 android:inputType="textPassword" />
 
             <TextView
@@ -100,7 +100,16 @@
                     android:checked="false"
                     android:text="ToggleButton"
                     android:textOff="@string/setup_signup"
-                    android:textOn="@string/setup_login" />
+                    android:textOn="@string/setup_login"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/signupButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="openBrowserSignup"
+                    android:text="@string/setup_signup" />
 
                 <Space
                     android:layout_width="wrap_content"

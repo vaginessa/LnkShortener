@@ -137,7 +137,16 @@ public class SetupActivity extends AppCompatActivity {
 
     }
 
-    public void backToSetp1Fragment(View view){
+    public void openBrowserSignup(View view){
+        // Opens the Reset Password page when Button is pressed.
+        Uri webpage = Uri.parse("https://1n.pm/signup");
+        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+        webIntent.setData(webpage);
+        startActivity(webIntent);
+
+    }
+
+    public void backToSetup1Fragment(View view){
 
         this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
         this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));

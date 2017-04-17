@@ -3,6 +3,7 @@ package de.hirtenstrasse.michael.lnkshortener;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
 
 
 /**
@@ -73,6 +75,37 @@ public class SetupStep3LoginFragment extends Fragment {
 
             }
         });
+
+
+        // Listener for enabling the login button
+
+        final EditText usernameEdit = (EditText) myInflater.findViewById(R.id.usernameEditText);
+        final EditText passwordEdit = (EditText) myInflater.findViewById(R.id.passwordEditText);
+
+        usernameEdit.setOnKeyListener(new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(!usernameEdit.getText().toString().matches("") && !passwordEdit.getText().toString().matches("")){
+                    loginButton.setEnabled(true);
+                } else {
+                    loginButton.setEnabled(false);
+                }
+                return false;
+            }
+        });
+
+        passwordEdit.setOnKeyListener(new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(!usernameEdit.getText().toString().matches("") && !passwordEdit.getText().toString().matches("")){
+                    loginButton.setEnabled(true);
+                } else {
+                    loginButton.setEnabled(false);
+                }
+                return false;
+            }
+        });
+
 
 
         return myInflater;
