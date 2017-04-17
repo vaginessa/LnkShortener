@@ -51,7 +51,7 @@ public class SetupStep2DefaultFragment extends Fragment {
 
         // Adding the Github Buttons
         WebView webview = (WebView) myInflater.findViewById(R.id.webViewTOS);
-        webview.getSettings().setJavaScriptEnabled(true);
+        webview.getSettings().setJavaScriptEnabled(false);
         webview.setBackgroundColor(0x00000000);
 
 

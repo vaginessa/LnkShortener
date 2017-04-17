@@ -1,6 +1,7 @@
 package de.hirtenstrasse.michael.lnkshortener;
 
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,7 +27,9 @@ public class SetupStep3AnonymousFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setup_step3_anonymous, container, false);
+        View myInflater = inflater.inflate(R.layout.fragment_setup_step3_anonymous, container, false);
+        
+        return myInflater;
     }
 
 }

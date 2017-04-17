@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="de.hirtenstrasse.michael.lnkshortener.SetupStep1Fragment"
-    android:background="@color/SetupPrimary"
     android:padding="15dp">
 
     <!-- TODO: Update blank fragment layout -->
@@ -23,8 +22,7 @@
             android:id="@+id/textView10"
             android:textStyle="normal|bold"
             android:textAlignment="center"
-            android:textSize="28sp"
-            android:textColor="@color/SetupSecondaryTitle" />
+            android:textSize="28sp" />
 
         <TextView
             android:text="@string/setup_use_default"
@@ -34,7 +32,6 @@
             android:textStyle="normal|bold"
             android:textAlignment="textStart"
             android:textSize="18sp"
-            android:textColor="@color/SetupSecondaryTitle"
 
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp" />
@@ -50,27 +47,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="@string/setup_anonymous"
-                android:textColor="@color/SetupText"
-                app:buttonTint="@color/SetupSecondaryTitle" />
+                android:text="@string/setup_anonymous" />
 
             <RadioButton
                 android:id="@+id/radioLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/setup_login_signup"
-                android:textColor="@color/SetupText"
-                app:buttonTint="@color/SetupSecondaryTitle" />
+                android:text="@string/setup_login_signup" />
 
 
         </RadioGroup>
 
         <WebView
+            android:id="@+id/webViewTOS"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/webViewTOS"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="50dp" />
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="15dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@android:color/background_light"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
 
         <Space
             android:layout_width="match_parent"
@@ -81,9 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/setup_agree_tos"
-            android:textColor="@color/SetupText"
-            android:textStyle="normal|bold"
-            app:buttonTint="@color/SetupSecondaryTitle" />
+            android:textStyle="normal|bold" />
 
 
         <Space
@@ -92,19 +98,18 @@
             android:layout_marginBottom="10dp" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/SetupButtonBackground"
-                android:text="@string/setup_button_back"
-                android:textColor="@color/SetupButtonText" />
+                android:onClick="backToSetup1Fragment"
+                android:text="@string/setup_button_back" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -116,12 +121,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/SetupButtonBackground"
                 android:enabled="false"
                 android:onClick="nextClickSetup2Default"
-                android:text="@string/setup_next"
-                android:textColor="@color/SetupButtonText" />
+                android:text="@string/setup_next" />
         </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 </FrameLayout>

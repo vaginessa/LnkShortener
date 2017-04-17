@@ -2,11 +2,16 @@ package de.hirtenstrasse.michael.lnkshortener;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class SetupActivity extends AppCompatActivity {
@@ -21,6 +26,21 @@ public class SetupActivity extends AppCompatActivity {
 
         // MainFragment is the start screen
         SetupStep1Fragment setupStep1Fragment = new SetupStep1Fragment();
+
+        // We check for old data, if it exists oldData is true
+        Bundle bundle = new Bundle();
+
+        boolean oldData = false;
+        // We check the shared preferences for non-stock API-Settings
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String apiKey = sharedPref.getString("api_key", null);
+        if(apiKey != "8a4a2c54d582048c31aa85baaeb3f8" && apiKey != ""){
+            oldData = true;
+        }
+        bundle.putBoolean("oldData", oldData);
+
+        // Sending data to fragment
+        setupStep1Fragment.setArguments(bundle);
 
         // Finally MainFragment is added to the main container
         transaction.replace(R.id.fragment_container, setupStep1Fragment);
@@ -94,10 +114,41 @@ public class SetupActivity extends AppCompatActivity {
 
                 break;
             case R.id.radioLogin:
+                //
+                SetupStep3LoginFragment login = new SetupStep3LoginFragment();
+                //
+                transaction.replace(R.id.fragment_container, login);
+
+                transaction.addToBackStack("");
+                transaction.commit();
                 break;
         }
 
 
 
     }
+
+    public void openBrowserResetPassword(View view){
+        // Opens the Reset Password page when Button is pressed.
+        Uri webpage = Uri.parse("https://1n.pm/lost_password");
+        Intent webIntent = new Intent(Intent.ACTION_VIEW);
+        webIntent.setData(webpage);
+        startActivity(webIntent);
+
+    }
+
+    public void backToSetp1Fragment(View view){
+
+        this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+        this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
+
+    }
+
+    public void backToStep2DefaultFragment(View view){
+
+        this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+        this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
+    }
+
+
 }

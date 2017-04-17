@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/SetupPrimary"
     android:padding="15dp"
     tools:context="de.hirtenstrasse.michael.lnkshortener.SetupStep1Fragment">
 
@@ -14,13 +13,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
 
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/SetupSecondaryTitle"
                 android:text="@string/setup1_title"
                 android:textAlignment="center"
                 android:textSize="28sp"
@@ -32,8 +31,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="@string/setup_introduction"
-                android:textColor="@color/SetupText"
-                android:textColorLink="@color/SetupSecondaryTitle"
                 android:textSize="18sp" />
 
             <TextView
@@ -44,7 +41,6 @@
                 android:layout_marginTop="15dp"
                 android:text="@string/setup_choose_title"
                 android:textAlignment="textStart"
-                android:textColor="@color/SetupSecondaryTitle"
                 android:textSize="20sp"
                 android:textStyle="normal|bold" />
 
@@ -59,8 +55,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:textColor="@color/SetupText"
-                    android:buttonTint="@color/colorPrimary"
                     android:text="@string/setup_1npm" />
 
                 <RadioButton
@@ -68,19 +62,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-
-                    android:textColor="@color/SetupText"
-                    android:buttonTint="@color/colorPrimary"
                     android:text="@string/setup_custom_server" />
 
                 <RadioButton
                     android:id="@+id/keepRadio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="true"
-
-                    android:textColor="@color/SetupText"
-                    android:buttonTint="@color/colorPrimary"
+                    android:enabled="false"
                     android:text="@string/setup_keep_settings" />
             </RadioGroup>
 
@@ -93,16 +81,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:orientation="vertical">
+        android:background="@android:color/background_light"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
 
 
         <Button
             android:id="@+id/nextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/SetupButtonBackground"
             android:onClick="nextClickSetup1"
-            android:text="@string/setup_next"
-            android:textColor="@color/colorPrimaryDark" />
+            android:text="@string/setup_next" />
     </LinearLayout>
 </FrameLayout>

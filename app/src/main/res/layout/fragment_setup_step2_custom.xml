@@ -9,90 +9,96 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="50dp">
 
         <TextView
-            android:text="@string/setup1_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/textView10"
-            android:textStyle="normal|bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setup1_title"
             android:textAlignment="center"
-            android:textSize="28sp"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:text="@string/setup_title_custom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView9"
-            android:textStyle="normal|bold"
-            android:textAlignment="textStart"
-            android:textSize="18sp"
             android:textColor="@android:color/black"
+            android:textSize="28sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp" />
+            android:text="@string/setup_title_custom"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
 
         <TextView
-            android:text="@string/setup_custom_domain"
+            android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView11" />
+            android:text="@string/setup_custom_domain" />
 
         <EditText
+            android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:ems="10"
             android:hint="https://1n.pm"
-            android:ems="10"
-            android:id="@+id/editText" />
+            android:inputType="textPersonName" />
 
         <TextView
-            android:text="@string/setup_api_key"
+            android:id="@+id/textView12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView12" />
+            android:text="@string/setup_api_key" />
 
         <EditText
+            android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="8a4a2c54d582048c31aa85baaeb3f8"
             android:ems="10"
-            android:id="@+id/editText2" />
+            android:hint="8a4a2c54d582048c31aa85baaeb3f8"
+            android:inputType="textPersonName" />
 
         <Button
-            android:text="@string/setup_check_api"
+            android:id="@+id/button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button5" />
+            android:text="@string/setup_check_api" />
 
 
     </LinearLayout>
 </ScrollView>
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_height="wrap_content">
+        android:background="@android:color/background_light"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
 
         <Button
-            android:text="@string/setup_button_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/button4"
-            android:layout_weight="1" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="backToSetp1Fragment"
+            android:text="@string/setup_button_back" />
 
         <Button
-            android:text="@string/setup_next"
-            android:layout_width="wrap_content"
-            android:enabled="false"
-            android:layout_height="wrap_content"
             android:id="@+id/button3"
-            android:layout_weight="1" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="@string/setup_next" />
     </LinearLayout>
 
 </FrameLayout>

@@ -1,10 +1,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
     android:layout_height="match_parent"
     tools:context="de.hirtenstrasse.michael.lnkshortener.SetupStep3AnonymousFragment">
 
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="@string/setup1_title"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        android:textStyle="normal|bold" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -28,17 +39,43 @@
             android:id="@+id/textView17"
             android:textAlignment="center" />
 
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_row="1"
+                android:visibility="gone"
+                android:text="@string/setup_created_uuid" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_row="2"
+
+                android:visibility="gone"
+                android:text="@string/setup_extracted_api_key" />
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_row="3"
+
+                android:visibility="gone"
+                android:text="@string/setup_tested_api" />
+        </GridLayout>
+
+
     </LinearLayout>
 
-    <TextView
-        android:text="@string/setup1_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView10"
-        android:textStyle="normal|bold"
-        android:textAlignment="center"
-        android:textSize="28sp"
-        android:textColor="@android:color/black" />
+
 
     <LinearLayout
         android:orientation="vertical"

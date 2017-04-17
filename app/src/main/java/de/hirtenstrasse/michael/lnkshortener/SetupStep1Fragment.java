@@ -1,12 +1,15 @@
 package de.hirtenstrasse.michael.lnkshortener;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
@@ -28,6 +31,12 @@ public class SetupStep1Fragment extends Fragment {
         // Inflate the layout for this fragment
         View myInflater = inflater.inflate(R.layout.fragment_setup_step1, container, false);
 
+
+        RadioButton keepRadioButton = (RadioButton) myInflater.findViewById(R.id.keepRadio);
+
+        if(getArguments().getBoolean("oldData")){
+            keepRadioButton.setEnabled(true);
+        }
 
         final Button next = (Button) myInflater.findViewById(R.id.nextButton);
 
