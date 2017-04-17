@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303f9f</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="SetupPrimary">#03a9f4</color>
+    <color name="SetupSecondaryTitle">#01579b</color>
+    <color name="SetupText">#E1F5FE</color>
+    <color name="SetupButtonBackground">#b3e5fc</color>
+    <color name="SetupButtonText">#01579B</color>
+    <color name="colorBackground">#E1F5FE</color>
 </resources>
