@@ -34,6 +34,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -64,9 +65,15 @@ public class InitialSetup {
     public void signUp(){
 
         // TODO: The android_id needs to be written to the shared preferences
-        username = "android-"+android_id;
+
+        String locale = Locale.getDefault().getCountry();
+        locale = locale.toLowerCase();
+
+        String lanloc = Locale.getDefault().toString();
+
+        username = "android-"+lanloc+"-"+android_id;
         password = randomPassword();
-        email = android_id+"@android.com";
+        email = android_id+"@android."+locale;
 
         Log.d("USER", username);
         Log.d("MAIL", email);
