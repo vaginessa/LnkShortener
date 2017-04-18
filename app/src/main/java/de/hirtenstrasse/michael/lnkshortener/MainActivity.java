@@ -22,13 +22,12 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Patterns;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import android.webkit.URLUtil;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // We need Cookie & Session support for the InitialSetup
+        // We need Cookie & Session support for the SetupHelper
         CookieHandler.setDefault(new CookieManager());
 
         urlmanager = new UrlManager(this);
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         // At this point we check, whether the App is running the first time
         // by looking for our shared preferences
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean firstStart = sharedPref.getBoolean("firstStart", false);
+        boolean firstStart = sharedPref.getBoolean("first_start", false);
 
         // Since false is Default we start the SetupActivity if firstStart = false
         if(firstStart == false){
@@ -209,8 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 aboutTransaction.commit();
 
             case R.id.action_signup:
-                InitialSetup setup = new InitialSetup(this);
-                setup.signUp();
+                Log.d("ACT", "Signup");
 
 
 

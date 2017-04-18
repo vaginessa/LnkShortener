@@ -7,18 +7,99 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
+import android.widget.EditText;
 import android.widget.RadioGroup;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 
 public class SetupActivity extends AppCompatActivity {
 
+    private SetupHelper helper;
+    private SharedPreferences sharedPref;
+    private UrlManager urlmanager;
+
+    public Response.Listener<String> signupListener = new Response.Listener<String>()
+    {
+        @Override
+        public void onResponse(String response){
+            // Now everything should be fine, new User should be set-up.
+            // Next we extract the API-Key before we can test it.
+            // The API-Key is extracted by logging the user into the /admin site of serverUrl
+            helper.queryNewApiKey(getAPIListener,getAPIErrorListener);
+        }
+    };
+
+    public Response.ErrorListener signupErrorListener = new Response.ErrorListener(){
+
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            // TODO: Add Logic. Basically go one step back and show error message / toast
+        }
+    };
+
+
+    public Response.Listener<String> testAPIListener = new Response.Listener<String>()
+    {
+        // TODO: Add Logic.
+        @Override
+        public void onResponse(String response){
+            // Here we should also check for the right redirect
+            Log.d("SUCC", response);
+        }
+    };
+
+    public Response.ErrorListener testAPIErrorListener = new Response.ErrorListener(){
+
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            // TODO: Add Logic.
+            Log.d("ERR",error.toString());
+            // If the statusCode is 404 probably the URL is wrong, if 302 maybe https instead of http,
+            // if 401 probably the API-Key is wrong.
+            Log.d("STATUS", "Error Code:" + error.networkResponse.statusCode);
+
+        }
+    };
+
+    public Response.Listener<String> getAPIListener = new Response.Listener<String>()
+    {
+        // TODO: Add Logic.
+        @Override
+        public void onResponse(String response){
+            // The response is the plain HTML of the /admin page. We need to extract the API-Key
+            // from the HTML, therefore we pass it to renderApiKey. After that we test the API-Key.
+            String apiKey = helper.renderApiKey(response);
+            helper.setApiKey(apiKey);
+            saveAnonymousAPIKey();
+        }
+    };
+
+    public Response.ErrorListener getAPIErrorListener = new Response.ErrorListener(){
+
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            // TODO: Add Logic.
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        helper =  new SetupHelper(this);
+        urlmanager = new UrlManager(this);
+
+        // We introduces the SharedPreferences
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+
         setContentView(R.layout.activity_setup);
 
         // Preparing Fragment
@@ -34,7 +115,7 @@ public class SetupActivity extends AppCompatActivity {
         // We check the shared preferences for non-stock API-Settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String apiKey = sharedPref.getString("api_key", null);
-        if(apiKey != "8a4a2c54d582048c31aa85baaeb3f8" && apiKey != ""){
+        if(!apiKey.matches("8a4a2c54d582048c31aa85baaeb3f8") && apiKey != ""){
             oldData = true;
         }
         bundle.putBoolean("oldData", oldData);
@@ -104,13 +185,16 @@ public class SetupActivity extends AppCompatActivity {
 
         switch (selected) {
             case R.id.radioAnonymous:
-                //
-                SetupStep3AnonymousFragment anon = new SetupStep3AnonymousFragment();
-                //
-                transaction.replace(R.id.fragment_container, anon);
+                // If this option is selected we want to setup an anonymous Account. Therefore We
+                // Swap to the loading fragment and start signUpAnonymously()
 
+                SetupFinalStepLoading anon = new SetupFinalStepLoading();
+                transaction.replace(R.id.fragment_container, anon);
                 transaction.addToBackStack("");
                 transaction.commit();
+
+                // Fragment changed, now we start the async Volley call.
+                signUpAnonymously();
 
                 break;
             case R.id.radioLogin:
@@ -147,17 +231,82 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     public void backToSetup1Fragment(View view){
-
+        // The best way of stepping back is to emulate pressing the back-button
         this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
         this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
 
     }
 
     public void backToStep2DefaultFragment(View view){
-
+        // The best way of stepping back is to emulate pressing the back-button
         this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
         this.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
     }
+
+    public void signUpAnonymously(){
+        // First of all we create anonymous account data
+        helper.createAnonymousAccountData();
+        // Also the user decided for 1n.pm - hence we set the server String
+        helper.setServerURL("https://1n.pm");
+        // Start of the async Volley request, which invokes the Listeners of this class
+        helper.signUp(signupListener, signupErrorListener);
+    }
+
+
+    public void testCustomAPIKey(View view){
+
+        // Now we check the custom input. Therefore We
+        // Swap to the loading fragment and save the values to helper
+
+        // Preparing Fragment Transaction
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        SetupFinalStepLoading anon = new SetupFinalStepLoading();
+        transaction.replace(R.id.fragment_container, anon);
+        transaction.addToBackStack("");
+        transaction.commit();
+
+        // If the user decides to add a custom server we first save the data to helper
+        // Afterwards we start the async task of testing the credentials.
+        EditText urlEdit = (EditText) this.findViewById(R.id.urlEditText);
+        EditText apiEdit = (EditText) this.findViewById(R.id.apiEditText);
+
+        String url = urlmanager.guessUrl(urlEdit.getText().toString());
+
+        helper.setServerURL(url);
+        helper.setApiKey(apiEdit.getText().toString());
+
+        Log.d("SET", url);
+        Log.d("SET", apiEdit.getText().toString());
+
+        helper.testAPI(testAPIListener,testAPIErrorListener);
+
+
+    }
+
+    public void testAnonymousAPIKey(){
+        // TODO: Add logic
+    }
+
+    public void saveAnonymousAPIKey(){
+        // Finally we can save the APIKey and other information in sharedprefs. Since we only save
+        // confidential information like the password with anonymous accounts we call specific
+        // voids for each option
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("api_key", helper.getApiKey());
+        editor.putString("username", helper.getUsername());
+
+        // Only the anonymous random generated password is being stored
+        // unsafely on the device
+        editor.putString("password", helper.getPassword());
+        editor.putString("url", helper.getServerURL());
+
+        // Here we set the bit which tells the MainActivity whether to start SetupActivity or not
+        editor.putBoolean("first_start", true);
+        editor.commit();
+        Log.d("KEY", helper.getApiKey());
+    }
+
+
 
 
 }

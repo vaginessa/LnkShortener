@@ -8,10 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SetupStep3AnonymousFragment extends Fragment {
+public class SetupFinalStepLoading extends Fragment {
 
 
-    public SetupStep3AnonymousFragment() {
+    public SetupFinalStepLoading() {
         // Required empty public constructor
     }
 

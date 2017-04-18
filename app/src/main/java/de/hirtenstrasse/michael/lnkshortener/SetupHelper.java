@@ -29,10 +29,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -45,27 +48,60 @@ import java.util.UUID;
 // For the moment this Setup will do in order to prevent spam abuse with 1n.pm
 
 
-public class InitialSetup {
+public class SetupHelper {
 
-    private String APIKey, DeviceID, username, password, email;
-    String android_id = UUID.randomUUID().toString();
+    private String username, password, email, serverURL, apiKey;
+    private final String android_id = UUID.randomUUID().toString();
 
     private static Context context;
     private static SharedPreferences sharedPref;
     private final RequestQueue queue;
 
-    public InitialSetup(Context context){
+    public SetupHelper(Context context){
         this.context = context;
-        // Receive the apiKey and Url from the shared preferences
-        PreferenceManager.setDefaultValues(context, R.xml.main_settings, false);
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        username = "";
+        password = "";
+        email = "";
+        serverURL = "";
+        // Initiate Volley Request Queue
         queue = Volley.newRequestQueue(this.context);
     }
 
-    public void signUp(){
+    public void setData(String serverURL, String username){
+        this.serverURL = serverURL;
+        this.username = username;
+    }
 
-        // TODO: The android_id needs to be written to the shared preferences
+    public String getUsername(){
+        return this.username;
+    }
 
+    public String getPassword(){
+        return this.password;
+    }
+
+    public String getEmail(){
+        return this.email;
+    }
+
+    public String getServerURL(){
+        return this.serverURL;
+    }
+
+    public String getApiKey(){
+        return this.apiKey;
+    }
+
+    public void setApiKey(String apiKey){
+        this.apiKey = apiKey;
+    }
+
+    public void setServerURL(String serverURL){
+        this.serverURL = serverURL;
+    }
+
+    public void createAnonymousAccountData()
+    {
         String locale = Locale.getDefault().getCountry();
         locale = locale.toLowerCase();
 
@@ -79,10 +115,13 @@ public class InitialSetup {
         Log.d("MAIL", email);
         Log.d("PASS", password);
 
+    }
+
+    public void signUp(final Response.Listener<String> listenerResponse, final Response.ErrorListener listenerError){
 
         // Assembles the URL and starts the API-Request
         final String url;
-        url = "https://1n.pm/signup";
+        url = serverURL+"/signup";
 
         // Actual Request to the API
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
@@ -97,21 +136,7 @@ public class InitialSetup {
 
                         // Actual Request to the API
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                                new Response.Listener<String>() {
-                                    @Override
-                                    public void onResponse(String response) {
-                                        // Now everything should be fine, new User should be set-up.
-                                        // Next we want to save the unique Android-id and a random password
-                                        // in the Shared preferences, before we update the API-Key
-                                        saveAccountInfo(android_id, username, password);
-                                        queryNewApiKey();
-                                    }
-                                }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-
-                            }
-                        }) {
+                                listenerResponse, listenerError) {
                             @Override
                             protected Map<String, String> getParams() {
                                 Map<String, String> params = new HashMap<String, String>();
@@ -122,7 +147,13 @@ public class InitialSetup {
 
                                 return params;
                             }
-                        };
+                            @Override
+                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                Map<String, String> params = new HashMap<String, String>();
+                                params.put("User-Agent", "LnkShortener App");
+                                return params;
+                            }
+                        } ;
                         queue.add(stringRequest);
                     }
                 }, new Response.ErrorListener() {
@@ -145,7 +176,7 @@ public class InitialSetup {
         queue.add(getRequest);
     }
 
-    private void queryNewApiKey(){
+    public void queryNewApiKey(final Response.Listener<String> listenerResponse, final Response.ErrorListener listenerError){
 
         // First of all we will need to login with the account info from SharedPreferences
 
@@ -155,7 +186,7 @@ public class InitialSetup {
 
         // Assembles the URL and starts the API-Request
         final String url;
-        url = "https://1n.pm/login";
+        url = serverURL+"/login";
 
         // Actual Request to the API
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
@@ -171,7 +202,7 @@ public class InitialSetup {
 
 
                         // Network request for the Loginpage
-                        String url = "https://1n.pm/login";
+                        String url = serverURL+"/login";
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                                 new Response.Listener<String>() {
                                     @Override
@@ -179,23 +210,9 @@ public class InitialSetup {
 
                                         // Now, if we're logged in we're ready for the last request
                                         // which finally obtains an API-Key
-                                        String url = "https://1n.pm/admin";
+                                        String url = serverURL+"/admin";
                                         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                                                new Response.Listener<String>() {
-                                                    @Override
-                                                    public void onResponse(String response) {
-                                                        String api_key = renderApiKey(response);
-                                                        saveApiKey(api_key);
-                                                        Log.d("API", api_key);
-
-                                                    }
-                                                }, new Response.ErrorListener() {
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
-
-
-                                            }
-                                        }) {
+                                                listenerResponse, listenerError) {
                                             @Override
                                             public Map<String, String> getHeaders() throws AuthFailureError {
                                                 Map<String, String> params = new HashMap<String, String>();
@@ -207,13 +224,7 @@ public class InitialSetup {
 
 
                                     }
-                                }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-
-
-                            }
-                        }) {
+                                }, listenerError) {
                             @Override
                             protected Map<String, String> getParams() {
                                 Map<String, String> params = new HashMap<String, String>();
@@ -234,12 +245,7 @@ public class InitialSetup {
                         queue.add(stringRequest);
 
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.toString());
-            }
-        }) {
+                }, listenerError) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
@@ -271,24 +277,13 @@ public class InitialSetup {
         return randomStringBuilder.toString();
     }
 
-    private void saveAccountInfo(String androidId, String username, String password){
-
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("android_id", androidId);
-        editor.putString("username", username);
-        // We only save passwords which have been randomly created by the device
-        // due to safety concerns user passwords will never be saved anywhere!
-        editor.putString("password", password);
-        editor.commit();
-    }
-
     private Map<String, String> retrieveAccountInfo(){
 
         Map<String, String> accountInfo = new HashMap<String, String>();
 
-        accountInfo.put("android_id", sharedPref.getString("android_id", null));
-        accountInfo.put("username", sharedPref.getString("username", null));
-        accountInfo.put("password", sharedPref.getString("password",null));
+        accountInfo.put("android_id", android_id);
+        accountInfo.put("username", username);
+        accountInfo.put("password", password);
 
         return accountInfo;
 
@@ -306,7 +301,7 @@ public class InitialSetup {
         return csrf_token;
     }
 
-    private String renderApiKey(String html){
+    public String renderApiKey(String html){
         String api_key = "";
 
         Document doc = Jsoup.parse(html);
@@ -322,6 +317,33 @@ public class InitialSetup {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("api_key", api_key);
         editor.commit();
+    }
+
+    public void testAPI(final Response.Listener<String> responseListener, final Response.ErrorListener errorListener){
+
+        String testUrl = "https://google.com";
+
+        // Assembles the URL and starts the API-Request
+        String url = serverURL+"api/v2/action/shorten?key="+apiKey+"&url=" + testUrl;
+        // Actual Request to the API
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // If we receive a proper Response we set the response as the shortened URL
+                        Log.d("SHORT", response);
+
+                        // Actual Request to the API
+                        StringRequest stringRequest = new StringRequest(Request.Method.GET, response,
+                                responseListener, errorListener
+                        );
+                        queue.add(stringRequest);
+
+                    }
+                },errorListener);
+
+        queue.add(stringRequest);
+
     }
 
 

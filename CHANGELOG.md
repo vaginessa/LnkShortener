@@ -1,5 +1,9 @@
+# 1.1.1
+## Versioncode 6
+* Added Setup-Assistant
+
 # 1.1.0
-## Versionscode 
+## Versioncode 5
 * Small Bugfixes
 * Small fixes for English and German language
 * Added Attributions to About page

@@ -92,6 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:enabled="false"
+            android:onClick="testCustomAPIKey"
             android:text="@string/setup_check_api" />
 
     </LinearLayout>
