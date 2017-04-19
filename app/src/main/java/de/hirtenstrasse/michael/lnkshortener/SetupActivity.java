@@ -3,6 +3,7 @@ package de.hirtenstrasse.michael.lnkshortener;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.TimeZoneFormat;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -76,6 +77,10 @@ public class SetupActivity extends AppCompatActivity {
             String apiKey = helper.renderApiKey(response);
             helper.setApiKey(apiKey);
             saveAnonymousAPIKey();
+            //TODO: Next Statement needs to be removed, testing purpose only.
+            updateLoadingText(apiKey);
+            updateLoadingStatus(100);
+
         }
     };
 
@@ -306,6 +311,19 @@ public class SetupActivity extends AppCompatActivity {
         Log.d("KEY", helper.getApiKey());
     }
 
+    public void updateLoadingText(String text){
+        SetupFinalStepLoading finalFragment = (SetupFinalStepLoading) getFragmentManager().findFragmentById(R.id.fragment_container);
+        if(finalFragment != null){
+            finalFragment.updateStatus(text);
+        }
+    }
+
+    public void updateLoadingStatus(int n){
+        SetupFinalStepLoading finalFragment = (SetupFinalStepLoading) getFragmentManager().findFragmentById(R.id.fragment_container);
+        if(finalFragment != null){
+            finalFragment.updateStatusPercent(n);
+        }
+    }
 
 
 
