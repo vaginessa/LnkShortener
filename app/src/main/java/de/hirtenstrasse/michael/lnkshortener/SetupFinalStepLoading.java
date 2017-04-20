@@ -1,19 +1,20 @@
 package de.hirtenstrasse.michael.lnkshortener;
 
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class SetupFinalStepLoading extends Fragment {
 
     TextView statusText;
-    ProgressBar spinner;
+    ProgressBar statusBar, statusSpinner;
+    ImageView doneImage;
 
     public SetupFinalStepLoading() {
         // Required empty public constructor
@@ -31,14 +32,13 @@ public class SetupFinalStepLoading extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View myInflater = inflater.inflate(R.layout.fragment_setup_step3_anonymous, container, false);
+        View myInflater = inflater.inflate(R.layout.fragment_final_step_loading, container, false);
 
         //  Assign variables for use in voids
-        spinner = (ProgressBar) myInflater.findViewById(R.id.statusSpinner);
-        statusText = (TextView) myInflater.findViewById(R.id.textStatus);
-
-        spinner.setMax(100);
-        spinner.setProgress(10);
+        statusBar = (ProgressBar) myInflater.findViewById(R.id.statusBar);
+        statusSpinner = (ProgressBar) myInflater.findViewById(R.id.statusSpinner);
+        statusText = (TextView) myInflater.findViewById(R.id.statusText);
+        doneImage = (ImageView) myInflater.findViewById(R.id.doneIcon);
 
         return myInflater;
     }
@@ -53,10 +53,15 @@ public class SetupFinalStepLoading extends Fragment {
 
         if(status > 0 && status <= 100){
 
-            spinner.setProgress(status);
+            statusBar.setProgress(status);
 
         } else {
             // TODO: Add error-logic
+        }
+
+        if(status == 100){
+            statusSpinner.setVisibility(View.GONE);
+            doneImage.setVisibility(View.VISIBLE);
         }
 
     }

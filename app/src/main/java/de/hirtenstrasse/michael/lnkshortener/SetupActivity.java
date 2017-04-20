@@ -32,6 +32,8 @@ public class SetupActivity extends AppCompatActivity {
             // Next we extract the API-Key before we can test it.
             // The API-Key is extracted by logging the user into the /admin site of serverUrl
             helper.queryNewApiKey(getAPIListener,getAPIErrorListener);
+            updateLoadingText(getString(R.string.setup_signup_done, helper.getUsername()));
+            updateLoadingStatus(33);
         }
     };
 
@@ -76,7 +78,8 @@ public class SetupActivity extends AppCompatActivity {
             // from the HTML, therefore we pass it to renderApiKey. After that we test the API-Key.
             String apiKey = helper.renderApiKey(response);
             helper.setApiKey(apiKey);
-            saveAnonymousAPIKey();
+            // TODO: Uncomment following line, testing purpose only.
+          //  saveAnonymousAPIKey();
             //TODO: Next Statement needs to be removed, testing purpose only.
             updateLoadingText(apiKey);
             updateLoadingStatus(100);

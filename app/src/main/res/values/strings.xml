@@ -82,4 +82,5 @@
     <string name="setup_tested_api">Tested API successfully</string>
     <string name="setup_example_username">user1234</string>
     <string name="setup_exmaple_password">S4f3H4ck0rPa55w0rd!</string>
+    <string name="setup_signup_done">Anonymous user %s has been signed up.</string>
 </resources>
