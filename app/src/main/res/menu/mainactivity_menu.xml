@@ -12,11 +12,6 @@
         android:icon="@drawable/ic_history_white_24dp"
         />
 
-    <item android:id="@+id/action_signup"
-        android:title="Signup"
-        android:icon="@drawable/ic_sync_black_24dp"
-        />
-
      <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/action_settings"
         android:title="@string/activity_settings"

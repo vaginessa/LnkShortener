@@ -207,12 +207,6 @@ public class MainActivity extends AppCompatActivity {
                 aboutTransaction.addToBackStack("");
                 aboutTransaction.commit();
 
-            case R.id.action_signup:
-                Log.d("ACT", "Signup");
-
-
-
-
 
             default:
                 // If we got here, the user's action was not recognized.
