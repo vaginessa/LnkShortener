@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/SetupPrimary"
     android:padding="15dp"
     tools:context="de.hirtenstrasse.michael.lnkshortener.SetupStep1Fragment">
 
@@ -31,7 +32,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="@string/setup_introduction"
-                android:textSize="18sp" />
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -55,21 +58,25 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:text="@string/setup_1npm" />
+                    android:text="@string/setup_1npm"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/customRadio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/setup_custom_server" />
+                    android:text="@string/setup_custom_server"
+                    android:textColor="@android:color/white" />
 
                 <RadioButton
                     android:id="@+id/keepRadio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
-                    android:text="@string/setup_keep_settings" />
+                    android:text="@string/setup_keep_settings"
+                    android:textColor="@android:color/white" />
             </RadioGroup>
 
 
@@ -81,15 +88,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@android:color/background_light"
+        android:background="@color/SetupPrimary"
         android:orientation="vertical"
         android:paddingTop="10dp">
 
 
         <Button
             android:id="@+id/nextButton"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="true"
             android:onClick="nextClickSetup1"
             android:text="@string/setup_next" />
     </LinearLayout>

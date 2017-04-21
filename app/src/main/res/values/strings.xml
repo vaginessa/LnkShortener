@@ -51,7 +51,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="setup1_title">LnkShortener Setup</string>
-    <string name="setup_introduction">LnkShortener uses a Polr-Interface in order to shorten URLs from your smartphone. You can use LnkShortener with your own Polr installation or use the default service 1n.pm</string>
+    <string name="setup_introduction">Welcome to LnkShortener! Before you can shorten your first link you will quickly need to run this setup. LnkShortener
+    shortens URLs by using a web-service. You can use the default shortening-service 1n.pm for free or enter information of your own Polr-Server. If you don\'t know
+    what Polr is you probably want to go with 1n.pm.</string>
     <string name="setup_custom_server">I want to use my own Polr-Installation</string>
     <string name="setup_1npm">I want to use 1n.pm (default)</string>
     <string name="setup_next">Next</string>
@@ -63,7 +65,7 @@
     <string name="setup_custom_domain">URL of your installation</string>
     <string name="setup_api_key">API Key</string>
     <string name="setup_use_default">Use 1n.pm</string>
-    <string name="setup_anonymous">Stay Anonymous</string>
+    <string name="setup_anonymous">Stay Anonymous (default)</string>
     <string name="setup_login">Login</string>
     <string name="setup_agree_tos">I hereby agree to the Terms of Service (TOS) for using 1n.pm</string>
     <string name="setup_username">Username</string>
@@ -82,4 +84,7 @@
     <string name="setup_tested_api">Tested API successfully</string>
     <string name="setup_example_username">user1234</string>
     <string name="setup_exmaple_password">S4f3H4ck0rPa55w0rd!</string>
+    <string name="setup_onenpm_intro">You can either choose to use 1n.pm with an anonymous account or sign-up or log into your account. If you create
+    a user account you can access analytics on 1n.pm websites.</string>
+
 </resources>
