@@ -324,7 +324,7 @@ public class SetupHelper {
         String testUrl = "https://google.com";
 
         // Assembles the URL and starts the API-Request
-        String url = serverURL+"api/v2/action/shorten?key="+apiKey+"&url=" + testUrl;
+        String url = serverURL+"/api/v2/action/shorten?key="+apiKey+"&url=" + testUrl;
         // Actual Request to the API
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

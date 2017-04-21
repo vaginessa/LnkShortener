@@ -45,7 +45,9 @@
             android:layout_gravity="bottom|center"
             android:gravity="center"
             android:text="@string/setup_create_anonymous_account"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ProgressBar
             android:id="@+id/statusBar"
@@ -81,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:enabled="false"
                 android:layout_height="wrap_content"
-                android:id="@+id/button3"
+                android:id="@+id/finishButton"
                 android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>

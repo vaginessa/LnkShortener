@@ -78,9 +78,13 @@
     <string name="setup_email">E-Mail</string>
     <string name="setup_signup_title">1n.pm Signup</string>
     <string name="setup_created_uuid">Created an anonymous username</string>
-    <string name="setup_extracted_api_key">Extracted API-Key</string>
-    <string name="setup_tested_api">Tested API successfully</string>
+    <string name="setup_creating_uuid">Creating an anonymous username...</string>
+    <string name="setup_extracted_api_key">Extracted API-Key for user %s successfully.</string>
+    <string name="setup_extracting_api_key">Extracting API-Key...</string>
+    <string name="setup_testing_api">Testing API-Key...</string>
+    <string name="setup_tested_api">Tested API-Key %s successfully.</string>
     <string name="setup_example_username">user1234</string>
     <string name="setup_exmaple_password">S4f3H4ck0rPa55w0rd!</string>
     <string name="setup_signup_done">Anonymous user %s has been signed up.</string>
+
 </resources>

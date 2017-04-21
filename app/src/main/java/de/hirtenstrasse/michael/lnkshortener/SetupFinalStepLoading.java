@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ public class SetupFinalStepLoading extends Fragment {
     TextView statusText;
     ProgressBar statusBar, statusSpinner;
     ImageView doneImage;
+    Button finishButton;
 
     public SetupFinalStepLoading() {
         // Required empty public constructor
@@ -39,6 +41,7 @@ public class SetupFinalStepLoading extends Fragment {
         statusSpinner = (ProgressBar) myInflater.findViewById(R.id.statusSpinner);
         statusText = (TextView) myInflater.findViewById(R.id.statusText);
         doneImage = (ImageView) myInflater.findViewById(R.id.doneIcon);
+        finishButton = (Button) myInflater.findViewById(R.id.finishButton);
 
         return myInflater;
     }
@@ -64,6 +67,10 @@ public class SetupFinalStepLoading extends Fragment {
             doneImage.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    public void enableFinishButton(){
+        finishButton.setEnabled(true);
     }
 
 }

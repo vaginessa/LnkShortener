@@ -31,9 +31,12 @@ public class SetupActivity extends AppCompatActivity {
             // Now everything should be fine, new User should be set-up.
             // Next we extract the API-Key before we can test it.
             // The API-Key is extracted by logging the user into the /admin site of serverUrl
-            helper.queryNewApiKey(getAPIListener,getAPIErrorListener);
             updateLoadingText(getString(R.string.setup_signup_done, helper.getUsername()));
             updateLoadingStatus(33);
+
+            updateLoadingText(getString(R.string.setup_extracting_api_key));
+            helper.queryNewApiKey(getAPIListener,getAPIErrorListener);
+
         }
     };
 
@@ -51,8 +54,11 @@ public class SetupActivity extends AppCompatActivity {
         // TODO: Add Logic.
         @Override
         public void onResponse(String response){
-            // Here we should also check for the right redirect
-            Log.d("SUCC", response);
+            // TODO: Here we should also check for the right redirect
+            // For now we assume that a 200 Response is quite alright
+            updateLoadingStatus(100);
+            updateLoadingText(getString(R.string.setup_tested_api, helper.getApiKey()));
+            enableFinishButton();
         }
     };
 
@@ -61,10 +67,8 @@ public class SetupActivity extends AppCompatActivity {
         @Override
         public void onErrorResponse(VolleyError error) {
             // TODO: Add Logic.
-            Log.d("ERR",error.toString());
-            // If the statusCode is 404 probably the URL is wrong, if 302 maybe https instead of http,
-            // if 401 probably the API-Key is wrong.
-            Log.d("STATUS", "Error Code:" + error.networkResponse.statusCode);
+            Log.d("ERR", error.toString());
+
 
         }
     };
@@ -78,11 +82,14 @@ public class SetupActivity extends AppCompatActivity {
             // from the HTML, therefore we pass it to renderApiKey. After that we test the API-Key.
             String apiKey = helper.renderApiKey(response);
             helper.setApiKey(apiKey);
-            // TODO: Uncomment following line, testing purpose only.
-          //  saveAnonymousAPIKey();
-            //TODO: Next Statement needs to be removed, testing purpose only.
-            updateLoadingText(apiKey);
-            updateLoadingStatus(100);
+
+            // Inform the User
+            updateLoadingText(getString(R.string.setup_extracted_api_key, helper.getUsername()));
+            updateLoadingStatus(66);
+
+            // Now we verify whether API-Key is working
+            helper.testAPI(testAPIListener,testAPIErrorListener);
+
 
         }
     };
@@ -258,6 +265,10 @@ public class SetupActivity extends AppCompatActivity {
         helper.setServerURL("https://1n.pm");
         // Start of the async Volley request, which invokes the Listeners of this class
         helper.signUp(signupListener, signupErrorListener);
+
+        // Updating the Status-Text and ProgressBar
+   //     updateLoadingStatus(0);
+    //    updateLoadingText(getString(R.string.setup_creating_uuid));
     }
 
 
@@ -328,6 +339,12 @@ public class SetupActivity extends AppCompatActivity {
         }
     }
 
+    public void enableFinishButton(){
+        SetupFinalStepLoading finalFragment = (SetupFinalStepLoading) getFragmentManager().findFragmentById(R.id.fragment_container);
+
+            finalFragment.enableFinishButton();
+
+    }
 
 
 }
