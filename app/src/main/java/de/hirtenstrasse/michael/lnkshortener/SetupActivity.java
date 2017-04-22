@@ -56,9 +56,19 @@ public class SetupActivity extends AppCompatActivity {
         public void onResponse(String response){
             // TODO: Here we should also check for the right redirect
             // For now we assume that a 200 Response is quite alright
+
+            // Everything done, so status = 100
             updateLoadingStatus(100);
             updateLoadingText(getString(R.string.setup_tested_api, helper.getApiKey()));
+
+            // Now we still need to save the API-Key to the SharedPrefs
+            saveAnonymousAPIKey();
+
+            // After this is done we can enable the finish button
+            // and display success message
             enableFinishButton();
+            updateLoadingText(getString(R.string.setup_signup_done));
+
         }
     };
 
@@ -88,6 +98,7 @@ public class SetupActivity extends AppCompatActivity {
             updateLoadingStatus(66);
 
             // Now we verify whether API-Key is working
+            updateLoadingText(getString(R.string.setup_testing_api));
             helper.testAPI(testAPIListener,testAPIErrorListener);
 
 
@@ -207,7 +218,8 @@ public class SetupActivity extends AppCompatActivity {
                 transaction.replace(R.id.fragment_container, anon);
                 transaction.addToBackStack("");
                 transaction.commit();
-
+                // TODO: Here we need to add some information about the initial
+                // Status to be shown in Fragment.
                 // Fragment changed, now we start the async Volley call.
                 signUpAnonymously();
 
@@ -322,7 +334,6 @@ public class SetupActivity extends AppCompatActivity {
         // Here we set the bit which tells the MainActivity whether to start SetupActivity or not
         editor.putBoolean("first_start", true);
         editor.commit();
-        Log.d("KEY", helper.getApiKey());
     }
 
     public void updateLoadingText(String text){
@@ -344,6 +355,12 @@ public class SetupActivity extends AppCompatActivity {
 
             finalFragment.enableFinishButton();
 
+    }
+
+    public void finishButtonPressed(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

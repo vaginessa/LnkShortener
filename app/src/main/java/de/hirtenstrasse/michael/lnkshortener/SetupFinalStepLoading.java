@@ -3,21 +3,25 @@ package de.hirtenstrasse.michael.lnkshortener;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class SetupFinalStepLoading extends Fragment {
 
-    TextView statusText;
+    TextView statusText, statusLog;
     ProgressBar statusBar, statusSpinner;
     ImageView doneImage;
     Button finishButton;
+
+    int step;
 
     public SetupFinalStepLoading() {
         // Required empty public constructor
@@ -43,12 +47,24 @@ public class SetupFinalStepLoading extends Fragment {
         statusText = (TextView) myInflater.findViewById(R.id.statusText);
         doneImage = (ImageView) myInflater.findViewById(R.id.doneIcon);
         finishButton = (Button) myInflater.findViewById(R.id.finishButton);
+        statusLog = (TextView) myInflater.findViewById(R.id.statusLogEditText);
+
+        step = 1;
 
 
         return myInflater;
     }
 
     public void updateStatus(String text){
+        String oldStatus, oldLog, newLog;
+
+        oldStatus= statusText.getText().toString();
+        oldLog = statusLog.getText().toString();
+
+        newLog = "["+step+"]" + oldStatus + "\n" + oldLog;
+        step++;
+
+        statusLog.setText(newLog);
         statusText.setText(text);
     }
 

@@ -45,7 +45,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisplayShortenedUrlActivity" />
         </activity>
-        <activity android:name=".SetupActivity"></activity>
+        <activity android:name=".SetupActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="Setup">
+            <intent-filter>
+                <action android:name="de.hirtenstrasse.michael.lnkshortener.SetupActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -47,6 +47,14 @@
     <string name="android_id">Unique Installation ID</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="run_setup">Run Setup</string>
+    <string name="server_settings">Server Settings</string>
+    <string name="settings_username">Username</string>
+    <string name="custom_settings">Custom Settings</string>
+    <string name="onenpm_settings_use">Use 1n.pm</string>
+    <string name="onenpm_settings_title">1n.pm Settings</string>
+    <string name="setup_summary">Run the first-time setup in order to signup with 1n.pm or add your custom server data.</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -74,21 +82,23 @@
     <string name="setup_lost_password">Reset Password</string>
     <string name="setup_title_tos">Terms of Service (TOS)</string>
     <string name="setup_login_signup">Login or Signup</string>
-    <string name="setup_create_anonymous_account">Creating Anonymous Account...</string>
+    <string name="setup_create_anonymous_account">Creating an anonymouy account...</string>
     <string name="setup_finish">Finish</string>
     <string name="setup_login_title">1n.pm Login</string>
     <string name="setup_email">E-Mail</string>
     <string name="setup_signup_title">1n.pm Signup</string>
     <string name="setup_created_uuid">Created an anonymous username successfully.</string>
     <string name="setup_creating_uuid">Creating an anonymous username...</string>
-    <string name="setup_extracted_api_key">Extracted API-Key successfully.</string>
-    <string name="setup_extracting_api_key">Extracting API-Key...</string>
+    <string name="setup_extracted_api_key">Obtained API-Key successfully.</string>
+    <string name="setup_extracting_api_key">Obtaining API-Key...</string>
     <string name="setup_testing_api">Testing API-Key...</string>
     <string name="setup_tested_api">Tested API-Key successfully.</string>
     <string name="setup_example_username">user1234</string>
     <string name="setup_exmaple_password">S4f3H4ck0rPa55w0rd!</string>
     <string name="setup_onenpm_intro">You can either choose to use 1n.pm with an anonymous account or sign-up or log into your account. If you create
     a user account you can access analytics on 1n.pm websites.</string>
-    <string name="setup_signup_done">Signed anonymous user successfully up.</string>
+    <string name="setup_signup_done">Anonymous user successfully signed up.</string>
+
+
 
 </resources>

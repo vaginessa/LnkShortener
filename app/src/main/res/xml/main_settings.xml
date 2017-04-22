@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:title="@string/run_setup"
+                android:summary="@string/setup_summary">
+        <intent android:action="de.hirtenstrasse.michael.lnkshortener.SetupActivity" />
+    </Preference>
+    <PreferenceCategory
+        android:title="@string/server_settings">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="@string/onenpm_settings_use"
+            android:key="use_onenpm" />
 
-    <EditTextPreference
-        android:defaultValue="https://1n.pm"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/settings_domain"
-        android:key="url" />
-    <EditTextPreference
-        android:defaultValue=""
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/settings_api_key"
-        android:key="api_key" />
-</PreferenceScreen>
+        <EditTextPreference
+            android:defaultValue="https://1n.pm"
+            android:key="url"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/settings_domain" />
+        <EditTextPreference
+            android:defaultValue=""
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/settings_api_key"
+            android:key="api_key" />
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/onenpm_settings_title">
+    <Preference
+        android:selectable="false"
+        android:enabled="true"
+        android:key="username"
+        android:title="@string/username"
+        android:summary="Here Username should be shown" />
+</PreferenceCategory>
+    </PreferenceScreen>
