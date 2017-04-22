@@ -1,9 +1,9 @@
 package de.hirtenstrasse.michael.lnkshortener;
 
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.text.TimeZoneFormat;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,16 +13,26 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 public class SetupActivity extends AppCompatActivity {
 
     private SetupHelper helper;
     private SharedPreferences sharedPref;
     private UrlManager urlmanager;
+    Context context;
 
     public Response.Listener<String> signupListener = new Response.Listener<String>()
     {
@@ -31,6 +41,8 @@ public class SetupActivity extends AppCompatActivity {
             // Now everything should be fine, new User should be set-up.
             // Next we extract the API-Key before we can test it.
             // The API-Key is extracted by logging the user into the /admin site of serverUrl
+
+            updateLoadingText(getString(R.string.setup_anonymous_username, helper.getUsername()));
             updateLoadingText(getString(R.string.setup_signup_done, helper.getUsername()));
             updateLoadingStatus(33);
 
@@ -44,30 +56,76 @@ public class SetupActivity extends AppCompatActivity {
 
         @Override
         public void onErrorResponse(VolleyError error) {
-            // TODO: Add Logic. Basically go one step back and show error message / toast
+
+            if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                // Is thrown if there's no network connection or server is down
+                Toast.makeText(context, getString(R.string.error_network_timeout),
+                        Toast.LENGTH_LONG).show();
+                // We return to the last fragment
+                if (getFragmentManager().getBackStackEntryCount() != 0) {
+                    getFragmentManager().popBackStack();
+                }
+
+            } else {
+                    // Is thrown if there's no network connection or server is down
+                    Toast.makeText(context, getString(R.string.error_network),
+                            Toast.LENGTH_LONG).show();
+                    // We return to the last fragment
+                    if (getFragmentManager().getBackStackEntryCount() != 0) {
+                        getFragmentManager().popBackStack();
+                    }
+            }
         }
     };
 
 
     public Response.Listener<String> testAPIListener = new Response.Listener<String>()
     {
-        // TODO: Add Logic.
         @Override
         public void onResponse(String response){
-            // TODO: Here we should also check for the right redirect
-            // For now we assume that a 200 Response is quite alright
 
-            // Everything done, so status = 100
-            updateLoadingStatus(100);
-            updateLoadingText(getString(R.string.setup_tested_api, helper.getApiKey()));
+            // Here we check the response to see whether its google.com. If it is true we can assume that
+            // Everything is working alright.
 
-            // Now we still need to save the API-Key to the SharedPrefs
-            saveAnonymousAPIKey();
 
-            // After this is done we can enable the finish button
-            // and display success message
-            enableFinishButton();
-            updateLoadingText(getString(R.string.setup_signup_done));
+            Log.d("GOG", response);
+
+            if(response.matches("https://google.com")){
+                // It matches soo:
+
+                // Everything done, so status = 100
+                updateLoadingStatus(100);
+                updateLoadingText(getString(R.string.setup_tested_api, helper.getApiKey()));
+
+                // Now we still need to save the API-Key to the SharedPrefs
+                saveAPIKey(helper.getType());
+
+                // We can enable the finish button
+                // and display success message
+                enableFinishButton();
+
+                if(helper.getType()==0) {
+                    // We're dealing with an anonymous account.
+                    updateLoadingText(getString(R.string.setup_signup_done));
+                } else if(helper.getType()==1) {
+                    // We're dealing with a 1n.pm user account
+                    updateLoadingText(getString(R.string.setup_useraccount_successfull, helper.getUsername()));
+                } else if(helper.getType()==2){
+                    // We're dealing with a custom server
+                    updateLoadingText(getString(R.string.setup_custom_successfull, helper.getServerURL()));
+                }
+
+            } else {
+                // Something went wrong, so we send an error Message.
+                Toast.makeText(context, getString(R.string.error_testing_api),
+                        Toast.LENGTH_LONG).show();
+                // We return to the last fragment
+                if (getFragmentManager().getBackStackEntryCount() != 0) {
+                    getFragmentManager().popBackStack();
+                }
+            }
+
+
 
         }
     };
@@ -76,27 +134,80 @@ public class SetupActivity extends AppCompatActivity {
 
         @Override
         public void onErrorResponse(VolleyError error) {
-            // TODO: Add Logic.
             Log.d("ERR", error.toString());
+            if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                // Is thrown if there's no network connection or server is down
+                Toast.makeText(context, getString(R.string.error_network_timeout),
+                        Toast.LENGTH_LONG).show();
+                // We return to the last fragment
+                if (getFragmentManager().getBackStackEntryCount() != 0) {
+                    getFragmentManager().popBackStack();
+                }
 
+            } else if (error instanceof AuthFailureError) {
+                // Is thrown if the API-Key is wrong
+                Toast.makeText(context, getString(R.string.error_apikey),
+                        Toast.LENGTH_LONG).show();
+                // We return to the last fragment
+                if (getFragmentManager().getBackStackEntryCount() != 0) {
+                    getFragmentManager().popBackStack();
+                }
+            }
+                else if (error instanceof ServerError) {
+                    // Is thrown if 404 or server down
+                    Toast.makeText(context, getString(R.string.error_server),
+                            Toast.LENGTH_LONG).show();
+                    // We return to the last fragment
+                    if (getFragmentManager().getBackStackEntryCount() != 0) {
+                        getFragmentManager().popBackStack();
+                    }
+                } else {
+                    // Some other problem.
+                    Toast.makeText(context, getString(R.string.error_network),
+                            Toast.LENGTH_LONG).show();
+                    // We return to the last fragment
+                    if (getFragmentManager().getBackStackEntryCount() != 0) {
+                        getFragmentManager().popBackStack();
+                    }
 
-        }
+                }
+            }
     };
 
     public Response.Listener<String> getAPIListener = new Response.Listener<String>()
     {
-        // TODO: Add Logic.
         @Override
         public void onResponse(String response){
             // The response is the plain HTML of the /admin page. We need to extract the API-Key
             // from the HTML, therefore we pass it to renderApiKey. After that we test the API-Key.
             String apiKey = helper.renderApiKey(response);
+            if(apiKey==null){
+                // The reason for that is probably that the user isn't API-Enabled or Login failed.
+
+                Toast.makeText(context, getString(R.string.error_login_failed),
+                        Toast.LENGTH_LONG).show();
+                // We return to the last fragment
+                if (getFragmentManager().getBackStackEntryCount() != 0) {
+
+                    getFragmentManager().popBackStack();
+                }
+
+                return;
+            }
+
             helper.setApiKey(apiKey);
 
-            // Inform the User
-            updateLoadingText(getString(R.string.setup_extracted_api_key, helper.getUsername()));
-            updateLoadingStatus(66);
-
+            if(helper.getType()==0) {
+                // ANONYMOUS
+                // Inform the User
+                updateLoadingText(getString(R.string.setup_extracted_api_key, helper.getUsername()));
+                updateLoadingStatus(66);
+            } else if(helper.getType()==1){
+                // SIGNED UP USER
+                // Inform the User
+                updateLoadingText(getString(R.string.setup_extracted_api_key));
+                updateLoadingStatus(50);
+            }
             // Now we verify whether API-Key is working
             updateLoadingText(getString(R.string.setup_testing_api));
             helper.testAPI(testAPIListener,testAPIErrorListener);
@@ -119,6 +230,7 @@ public class SetupActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        context = getApplicationContext();
         helper =  new SetupHelper(this);
         urlmanager = new UrlManager(this);
 
@@ -215,11 +327,19 @@ public class SetupActivity extends AppCompatActivity {
                 // Swap to the loading fragment and start signUpAnonymously()
 
                 SetupFinalStepLoading anon = new SetupFinalStepLoading();
+
+                // We send two pieces of information to anon: 1) statustext, 2) statusspinner
+                Bundle bundle = new Bundle();
+                bundle.putString("statuspercent", getString(R.string.setup_creating_uuid));
+
+                // Add bundle to  anon
+                anon.setArguments(bundle);
+
+                // Ready for transaction
                 transaction.replace(R.id.fragment_container, anon);
                 transaction.addToBackStack("");
                 transaction.commit();
-                // TODO: Here we need to add some information about the initial
-                // Status to be shown in Fragment.
+
                 // Fragment changed, now we start the async Volley call.
                 signUpAnonymously();
 
@@ -274,13 +394,44 @@ public class SetupActivity extends AppCompatActivity {
         // First of all we create anonymous account data
         helper.createAnonymousAccountData();
         // Also the user decided for 1n.pm - hence we set the server String
-        helper.setServerURL("https://1n.pm");
+        helper.setServerURL("https://1n.pm/");
         // Start of the async Volley request, which invokes the Listeners of this class
         helper.signUp(signupListener, signupErrorListener);
 
-        // Updating the Status-Text and ProgressBar
-   //     updateLoadingStatus(0);
-    //    updateLoadingText(getString(R.string.setup_creating_uuid));
+    }
+
+    public void signInOnenpm(View view){
+        // We set the type to signin
+        helper.setType(1);
+        // We set the 1n.pm server url
+        helper.setServerURL("https://1n.pm/");
+
+        EditText username = (EditText) this.findViewById(R.id.usernameEditText);
+        EditText password = (EditText) this.findViewById(R.id.passwordEditText);
+
+        // We set the username
+        helper.setUsername(username.getText().toString());
+
+        // We set the password
+        helper.setPassword(password.getText().toString());
+
+        // Preparing Fragment Transaction
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        SetupFinalStepLoading finalStep = new SetupFinalStepLoading();
+
+        // We also need to add some arguments to the fragment
+        Bundle bundle = new Bundle();
+        bundle.putString("statustext", getString(R.string.setup_signing_in, helper.getUsername()));
+        finalStep.setArguments(bundle);
+
+        // Ready for transaction
+        transaction.replace(R.id.fragment_container, finalStep);
+        transaction.addToBackStack("");
+        transaction.commit();
+
+        // Now we try to extract the API-Key
+        helper.queryNewApiKey(getAPIListener, getAPIErrorListener);
+
     }
 
 
@@ -291,8 +442,15 @@ public class SetupActivity extends AppCompatActivity {
 
         // Preparing Fragment Transaction
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        SetupFinalStepLoading anon = new SetupFinalStepLoading();
-        transaction.replace(R.id.fragment_container, anon);
+        SetupFinalStepLoading finalStep = new SetupFinalStepLoading();
+
+        // We also need to add some arguments to the fragment
+        Bundle bundle = new Bundle();
+        bundle.putString("statustext", getString(R.string.setup_testing_api));
+        finalStep.setArguments(bundle);
+
+        // Ready for transaction
+        transaction.replace(R.id.fragment_container, finalStep);
         transaction.addToBackStack("");
         transaction.commit();
 
@@ -301,10 +459,13 @@ public class SetupActivity extends AppCompatActivity {
         EditText urlEdit = (EditText) this.findViewById(R.id.urlEditText);
         EditText apiEdit = (EditText) this.findViewById(R.id.apiEditText);
 
+        // The url should already be valid, because this has been validated before
         String url = urlmanager.guessUrl(urlEdit.getText().toString());
 
         helper.setServerURL(url);
         helper.setApiKey(apiEdit.getText().toString());
+        // We set the type to custom
+        helper.setType(2);
 
         Log.d("SET", url);
         Log.d("SET", apiEdit.getText().toString());
@@ -314,21 +475,22 @@ public class SetupActivity extends AppCompatActivity {
 
     }
 
-    public void testAnonymousAPIKey(){
-        // TODO: Add logic
-    }
-
-    public void saveAnonymousAPIKey(){
+    public void saveAPIKey(int type){
         // Finally we can save the APIKey and other information in sharedprefs. Since we only save
         // confidential information like the password with anonymous accounts we call specific
         // voids for each option
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("api_key", helper.getApiKey());
-        editor.putString("username", helper.getUsername());
+
+        // We're dealing with a 1n.pm user, hence we save the the username
+        if(type < 2)
+            editor.putString("username", helper.getUsername());
 
         // Only the anonymous random generated password is being stored
         // unsafely on the device
-        editor.putString("password", helper.getPassword());
+        if(type==0)
+            editor.putString("password", helper.getPassword());
+
         editor.putString("url", helper.getServerURL());
 
         // Here we set the bit which tells the MainActivity whether to start SetupActivity or not

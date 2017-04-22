@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="https://1n.pm"
-                android:inputType="textPersonName"
+                android:inputType="textUri"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="8a4a2c54d582048c31aa85baaeb3f8"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:textColor="@android:color/white" />
 
 

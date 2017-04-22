@@ -56,12 +56,10 @@
     <string name="setup_summary">Run the first-time setup in order to signup with 1n.pm or add your custom server data.</string>
 
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="setup1_title">LnkShortener Setup</string>
     <string name="setup_introduction">Welcome to LnkShortener! Before you can shorten your first link you will quickly need to run this setup. LnkShortener
-    shortens URLs by using a web-service. You can use the default shortening-service 1n.pm for free or enter information of your own Polr-Server. If you don\'t know
-    what Polr is you probably want to go with 1n.pm.</string>
+    shortens URLs by using a web-service. You can use the default shortening-service 1n.pm for free or enter information of your own Polr-Server. If you have never
+heard of Polr choose 1n.pm.</string>
     <string name="setup_custom_server">I want to use my own Polr-Installation</string>
     <string name="setup_1npm">I want to use 1n.pm (default)</string>
     <string name="setup_next">Next</string>
@@ -72,8 +70,8 @@
     <string name="setup_check_api">Check</string>
     <string name="setup_custom_domain">URL of your installation</string>
     <string name="setup_api_key">API Key</string>
-    <string name="setup_use_default">Use 1n.pm</string>
-    <string name="setup_anonymous">Stay Anonymous (default)</string>
+    <string name="setup_use_default">Using 1n.pm</string>
+    <string name="setup_anonymous">I want to stay anonymous (default)</string>
     <string name="setup_login">Login</string>
     <string name="setup_agree_tos">I hereby agree to the Terms of Service (TOS) for using 1n.pm</string>
     <string name="setup_username">Username</string>
@@ -81,24 +79,35 @@
     <string name="setup_signup">Signup</string>
     <string name="setup_lost_password">Reset Password</string>
     <string name="setup_title_tos">Terms of Service (TOS)</string>
-    <string name="setup_login_signup">Login or Signup</string>
-    <string name="setup_create_anonymous_account">Creating an anonymouy account...</string>
+    <string name="setup_login_signup">I want to login or sign up</string>
+    <string name="setup_create_anonymous_account">Creating an anonymous account&#8230;</string>
     <string name="setup_finish">Finish</string>
     <string name="setup_login_title">1n.pm Login</string>
+    <string name="setup_anonymous_username">Anonymous username: %s</string>
     <string name="setup_email">E-Mail</string>
-    <string name="setup_signup_title">1n.pm Signup</string>
+    <string name="setup_signup_title">1n.pm Sign-up</string>
     <string name="setup_created_uuid">Created an anonymous username successfully.</string>
-    <string name="setup_creating_uuid">Creating an anonymous username...</string>
+    <string name="setup_creating_uuid">Creating an anonymous username&#8230;</string>
     <string name="setup_extracted_api_key">Obtained API-Key successfully.</string>
-    <string name="setup_extracting_api_key">Obtaining API-Key...</string>
-    <string name="setup_testing_api">Testing API-Key...</string>
+    <string name="setup_extracting_api_key">Obtaining API-Key&#8230;</string>
+    <string name="setup_testing_api">Testing API-Key&#8230;</string>
     <string name="setup_tested_api">Tested API-Key successfully.</string>
     <string name="setup_example_username">user1234</string>
     <string name="setup_exmaple_password">S4f3H4ck0rPa55w0rd!</string>
-    <string name="setup_onenpm_intro">You can either choose to use 1n.pm with an anonymous account or sign-up or log into your account. If you create
+    <string name="setup_onenpm_intro">You can use 1n.pm anonymously or sign-up. If you create
     a user account you can access analytics on 1n.pm websites.</string>
     <string name="setup_signup_done">Anonymous user successfully signed up.</string>
+    <string name="setup_useraccount_successfull">%s signed in successfully.</string>
+    <string name="setup_custom_successfull">%s set up successfully.</string>
+    <string name="setup_signing_in">Signing %s in...</string>
 
+    <string name="error_network_timeout">Please check your internet connection.</string>
+    <string name="error_network">An error occurred. Please try again later.</string>
+    <string name="error_login_failed">Login failed. Check your credentials.</string>
+    <string name="error_testing_api">Testing API-Key failed. Please try again.</string>
+    <string name="error_apikey">API-Key not accepted by server. Please check the entered API-Key.</string>
+    <string name="error_server">Cannot connect to API. Please check the URL.</string>
+    <string name="setup_log">Log</string>
 
 
 </resources>

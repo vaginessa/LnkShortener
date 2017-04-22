@@ -49,7 +49,17 @@ public class SetupFinalStepLoading extends Fragment {
         finishButton = (Button) myInflater.findViewById(R.id.finishButton);
         statusLog = (TextView) myInflater.findViewById(R.id.statusLogEditText);
 
+        // Step for the Status Log
         step = 1;
+
+        // Retrieve arguments passed to Fragment
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            if(bundle.get("statustext")!= null) {
+                // We directly set the text, because the default shouldn't be shown in the log
+                statusText.setText(bundle.getString("statustext"));
+            }
+        }
 
 
         return myInflater;
@@ -61,7 +71,7 @@ public class SetupFinalStepLoading extends Fragment {
         oldStatus= statusText.getText().toString();
         oldLog = statusLog.getText().toString();
 
-        newLog = "["+step+"]" + oldStatus + "\n" + oldLog;
+        newLog = "["+step+"] " + oldStatus + "\n" + oldLog;
         step++;
 
         statusLog.setText(newLog);

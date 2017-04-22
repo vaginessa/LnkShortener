@@ -6,11 +6,11 @@
     </Preference>
     <PreferenceCategory
         android:title="@string/server_settings">
-        <CheckBoxPreference
+  <!--      <CheckBoxPreference
             android:defaultValue="false"
             android:title="@string/onenpm_settings_use"
             android:key="use_onenpm" />
-
+//-->
         <EditTextPreference
             android:defaultValue="https://1n.pm"
             android:key="url"
@@ -25,6 +25,7 @@
             android:key="api_key" />
 
     </PreferenceCategory>
+    <!--
     <PreferenceCategory
         android:title="@string/onenpm_settings_title">
     <Preference
@@ -33,5 +34,5 @@
         android:key="username"
         android:title="@string/username"
         android:summary="Here Username should be shown" />
-</PreferenceCategory>
+</PreferenceCategory> //-->
     </PreferenceScreen>

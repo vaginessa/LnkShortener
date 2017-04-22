@@ -22,6 +22,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -35,6 +36,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Locale;
@@ -51,6 +54,9 @@ import java.util.UUID;
 public class SetupHelper {
 
     private String username, password, email, serverURL, apiKey;
+    // type is a variable to show which to of setup we just attempted.
+    // 0 = anonymous, 1 = user, 2 = custom
+    private int type = -1;
     private final String android_id = UUID.randomUUID().toString();
 
     private static Context context;
@@ -70,6 +76,10 @@ public class SetupHelper {
     public void setData(String serverURL, String username){
         this.serverURL = serverURL;
         this.username = username;
+    }
+
+    public int getType() {
+        return this.type;
     }
 
     public String getUsername(){
@@ -100,6 +110,17 @@ public class SetupHelper {
         this.serverURL = serverURL;
     }
 
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+    public void setPassword(String password){
+        this.password = password;
+    }
+
     public void createAnonymousAccountData()
     {
         String locale = Locale.getDefault().getCountry();
@@ -107,9 +128,11 @@ public class SetupHelper {
 
         String lanloc = Locale.getDefault().toString();
 
-        username = "android-"+lanloc+"-"+android_id;
+        username = "android-"+android_id+"-"+lanloc;
         password = randomPassword();
-        email = android_id+"@android."+locale;
+        email = android_id+"@android.com";
+
+        type = 0;
 
         Log.d("USER", username);
         Log.d("MAIL", email);
@@ -156,12 +179,7 @@ public class SetupHelper {
                         } ;
                         queue.add(stringRequest);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.toString());
-            }
-        }) {
+                },listenerError) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
@@ -261,10 +279,6 @@ public class SetupHelper {
 
     }
 
-    private void setAPIKey(){
-
-    }
-
     private String randomPassword(){
         Random generator = new Random();
         StringBuilder randomStringBuilder = new StringBuilder();
@@ -302,13 +316,16 @@ public class SetupHelper {
     }
 
     public String renderApiKey(String html){
-        String api_key = "";
+        String api_key = null;
 
         Document doc = Jsoup.parse(html);
         Element apiField = doc.select(".status-display").first();
 
-        api_key = apiField.attr("value");
-
+        try {
+            api_key = apiField.attr("value");
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
         return api_key;
 
     }
@@ -330,13 +347,33 @@ public class SetupHelper {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // If we receive a proper Response we set the response as the shortened URL
+                        // If we receive a proper Response query the API in inverse
                         Log.d("SHORT", response);
 
+                        String encodedEnding = null;
+
+                        URL shortURL = null;
+                        try {
+                            shortURL = new URL(response);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                        String ending = shortURL.getPath();
+                        ending = ending.substring(1);
+
+                        // Tries to encode the URL
+                        try {
+                            encodedEnding = URLEncoder.encode(ending, "utf-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+
+                        String reverseUrl = serverURL+"/api/v2/action/lookup?key="+apiKey+"&url_ending="+encodedEnding;
                         // Actual Request to the API
-                        StringRequest stringRequest = new StringRequest(Request.Method.GET, response,
+                        StringRequest stringRequest = new StringRequest(Request.Method.GET, reverseUrl,
                                 responseListener, errorListener
                         );
+
                         queue.add(stringRequest);
 
                     }

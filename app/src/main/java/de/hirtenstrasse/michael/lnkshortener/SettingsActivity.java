@@ -26,6 +26,9 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Setting up the Layout
+
+        // TODO: Add logic for bool use 1n.pm and for displaying username
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 

@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         if(firstStart == false){
             Intent setupIntent = new Intent(this, SetupActivity.class);
             startActivity(setupIntent);
+
         }
 
         // Setting up the Layout

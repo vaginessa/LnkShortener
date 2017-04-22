@@ -3,6 +3,8 @@ package de.hirtenstrasse.michael.lnkshortener;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,27 +84,50 @@ public class SetupStep3LoginFragment extends Fragment {
         final EditText usernameEdit = (EditText) myInflater.findViewById(R.id.usernameEditText);
         final EditText passwordEdit = (EditText) myInflater.findViewById(R.id.passwordEditText);
 
-        usernameEdit.setOnKeyListener(new View.OnKeyListener(){
+        usernameEdit.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 if(!usernameEdit.getText().toString().matches("") && !passwordEdit.getText().toString().matches("")){
                     loginButton.setEnabled(true);
                 } else {
                     loginButton.setEnabled(false);
                 }
-                return false;
+                return;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
-        passwordEdit.setOnKeyListener(new View.OnKeyListener(){
+
+        passwordEdit.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 if(!usernameEdit.getText().toString().matches("") && !passwordEdit.getText().toString().matches("")){
                     loginButton.setEnabled(true);
                 } else {
                     loginButton.setEnabled(false);
                 }
-                return false;
+                return;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
