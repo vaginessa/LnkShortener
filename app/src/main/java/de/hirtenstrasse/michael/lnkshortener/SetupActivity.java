@@ -1,5 +1,20 @@
 package de.hirtenstrasse.michael.lnkshortener;
 
+// Copyright (C) 2017 Michael Achmann
+
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -178,12 +193,19 @@ public class SetupActivity extends AppCompatActivity {
     {
         @Override
         public void onResponse(String response){
+
+            // First the var apiKey is initialized - it always need to be null in the first place
+            String apiKey = null;
+
             // The response is the plain HTML of the /admin page. We need to extract the API-Key
-            // from the HTML, therefore we pass it to renderApiKey. After that we test the API-Key.
-            String apiKey = helper.renderApiKey(response);
+            // from the HTMML, therefore we pass it to renderApiKey. After that we test the API-Key.
+            for( String line : response.split("\n") ) {
+                Log.d( "HTML", line );
+            }
+            apiKey = helper.renderApiKey(response);
             if(apiKey==null){
                 // The reason for that is probably that the user isn't API-Enabled or Login failed.
-
+                helper.setApiKey(null);
                 Toast.makeText(context, getString(R.string.error_login_failed),
                         Toast.LENGTH_LONG).show();
                 // We return to the last fragment
@@ -193,35 +215,71 @@ public class SetupActivity extends AppCompatActivity {
                 }
 
                 return;
+            } else {
+                Log.d("API", apiKey);
+                helper.setApiKey(apiKey);
+
+                if (helper.getType() == 0) {
+                    // ANONYMOUS
+                    // Inform the User
+                    updateLoadingText(getString(R.string.setup_extracted_api_key, helper.getUsername()));
+                    updateLoadingStatus(66);
+                } else if (helper.getType() == 1) {
+                    // SIGNED UP USER
+                    // Inform the User
+                    updateLoadingText(getString(R.string.setup_extracted_api_key));
+                    updateLoadingStatus(50);
+                }
+                // Now we verify whether API-Key is working
+                updateLoadingText(getString(R.string.setup_testing_api));
+                helper.testAPI(testAPIListener, testAPIErrorListener);
+
             }
-
-            helper.setApiKey(apiKey);
-
-            if(helper.getType()==0) {
-                // ANONYMOUS
-                // Inform the User
-                updateLoadingText(getString(R.string.setup_extracted_api_key, helper.getUsername()));
-                updateLoadingStatus(66);
-            } else if(helper.getType()==1){
-                // SIGNED UP USER
-                // Inform the User
-                updateLoadingText(getString(R.string.setup_extracted_api_key));
-                updateLoadingStatus(50);
-            }
-            // Now we verify whether API-Key is working
-            updateLoadingText(getString(R.string.setup_testing_api));
-            helper.testAPI(testAPIListener,testAPIErrorListener);
-
 
         }
     };
 
     public Response.ErrorListener getAPIErrorListener = new Response.ErrorListener(){
 
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            // TODO: Add Logic.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("ERR", error.toString());
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    // Is thrown if there's no network connection or server is down
+                    Toast.makeText(context, getString(R.string.error_network_timeout),
+                            Toast.LENGTH_LONG).show();
+                    // We return to the last fragment
+                    if (getFragmentManager().getBackStackEntryCount() != 0) {
+                        getFragmentManager().popBackStack();
+                    }
 
+                } else if (error instanceof AuthFailureError) {
+                    // Is thrown if the API-Key is wrong
+                    Toast.makeText(context, getString(R.string.error_apikey),
+                            Toast.LENGTH_LONG).show();
+                    // We return to the last fragment
+                    if (getFragmentManager().getBackStackEntryCount() != 0) {
+                        getFragmentManager().popBackStack();
+                    }
+                }
+                else if (error instanceof ServerError) {
+                    // Is thrown if 404 or server down
+                    Toast.makeText(context, getString(R.string.error_server),
+                            Toast.LENGTH_LONG).show();
+                    // We return to the last fragment
+                    if (getFragmentManager().getBackStackEntryCount() != 0) {
+                        getFragmentManager().popBackStack();
+                    }
+                } else {
+                    // Some other problem.
+                    Toast.makeText(context, getString(R.string.error_network),
+                            Toast.LENGTH_LONG).show();
+                    // We return to the last fragment
+                    if (getFragmentManager().getBackStackEntryCount() != 0) {
+                        getFragmentManager().popBackStack();
+                    }
+
+                }
         }
     };
 
@@ -514,8 +572,7 @@ public class SetupActivity extends AppCompatActivity {
 
     public void enableFinishButton(){
         SetupFinalStepLoading finalFragment = (SetupFinalStepLoading) getFragmentManager().findFragmentById(R.id.fragment_container);
-
-            finalFragment.enableFinishButton();
+        finalFragment.enableFinishButton();
 
     }
 

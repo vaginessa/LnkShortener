@@ -200,6 +200,8 @@ public class SetupHelper {
 
         final Map<String, String> accountInfo = retrieveAccountInfo();
 
+        // Here we could add in the future some logic that checks whether the credentials really are the problem
+        // So far we simply assume it by looking at VolleyErrors
 
 
         // Assembles the URL and starts the API-Request
@@ -319,7 +321,7 @@ public class SetupHelper {
         String api_key = null;
 
         Document doc = Jsoup.parse(html);
-        Element apiField = doc.select(".status-display").first();
+        Element apiField = doc.select("input.status-display").first();
 
         try {
             api_key = apiField.attr("value");

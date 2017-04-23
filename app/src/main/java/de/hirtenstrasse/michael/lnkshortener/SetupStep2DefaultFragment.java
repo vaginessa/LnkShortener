@@ -1,5 +1,19 @@
 package de.hirtenstrasse.michael.lnkshortener;
 
+// Copyright (C) 2017 Michael Achmann
+
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -15,7 +29,7 @@ import java.util.zip.Inflater;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Step 2 in the Setup Assistant. Shows the options for the use of 1n.pm
  */
 public class SetupStep2DefaultFragment extends Fragment {
 
@@ -49,12 +63,11 @@ public class SetupStep2DefaultFragment extends Fragment {
         );
 
 
-        // Adding the Github Buttons
+        //  Loading the TOS from local html file
         WebView webview = (WebView) myInflater.findViewById(R.id.webViewTOS);
         webview.getSettings().setJavaScriptEnabled(false);
         webview.setBackgroundColor(0x00000000);
-
-
+        // It is saved in the assets
         webview.loadUrl("file:///android_asset/tos.html");
 
         return myInflater;
