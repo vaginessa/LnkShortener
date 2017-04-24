@@ -1,31 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">"LnkShortener"</string>
 
-    <string name="app_name">LnkShortener</string>
-    <string name="chooser_title">Link teilen via</string>
-    <string name="error_404">Diese gekürzte URL existiert nicht.</string>
-    <string name="error_internal">Interner Server Fehler.</string>
-    <string name="error_quota">Du hast dein Kontingent überschritten.</string>
-    <string name="error_toast">Es ist ein Fehler aufgetreten.</string>
-    <string name="error_unauthorized">API-Backend nicht autorisiert.</string>
-    <string name="error_valid_url">Bitte gib eine gültige URL ein.</string>
-    <string name="open_chooser_title">Link öffnen via</string>
-    <string name="copied_to_clipboard">In Zwischenablage kopiert</string>
-    <string name="shorten">KÜRZEN</string>
-    <string name="activity_settings">Einstellungen</string>
-    <string name="activity_display_url">Gekürzte URL</string>
-    <string name="error_misc">Bitte überprüfe deine Polr Einstellungen!</string>
-    <string name="settings_api_key">API-Schlüssel</string>
-    <string name="settings_domain">Domain</string>
-    <string name="action_history">Verlauf</string>
-    <string name="action_bug">Bug melden</string>
-    <string name="about_changelog">LnkShortener verwendet <a href="https://github.com/cketti/ckChangeLog">ckChangeLog</a>, das Paket ist mit der Apache-2 Lizenz versehen.</string>
-    <string name="about_qrgen">Die QR-Code Funktion basiert auf <a href="https://github.com/kenglxn/QRGen">QRGen</a>. Diese Bibliothek ist nach der Apache 2.0 Lizenz frei verfügbar.</string>
-    <string name="about_title">LnkShortener ist unter der GPL-3 Lizenz veröffentlich</string>
-    <string name="action_about">Über LnkShortener</string>
-    <string name="error_generic_url">Bitter überprüfe die URL. Handelt es sich vielleicht um eine System-URL?</string>
-    <string name="error_system_url">System-URLs können nicht verkürzt werden.</string>
-    <string name="expanded_url">Erweiterte URL</string>
-    <string name="no_url">URL konnte nicht gefunden werden</string>
-    <string name="source_code">Der Quellecode von LnkShortener ist auf  <a href="https://github.com/michaelachmann/LnkShortener">Github</a>  einsehbar</string>
+    <!-- String for Menu in MainActivity -->
+    <string name="action_bug">"Bug melden"</string>
+    <string name="activity_settings">"Einstellungen"</string>
+    <string name="action_history">"Verlauf"</string>
+
+    <!-- Strings for MainActivity -->
+    <string name="shorten">"KÜRZEN"</string>
+
+    <!-- Strings for DisplayShortenedUrlActivity -->
+    <string name="error_toast">"Es ist ein Fehler aufgetreten."</string>
+    <string name="chooser_title">"Diesen Link teilen via"</string>
+    <string name="error_valid_url">"Gib eine gültige URL an."</string>
+    <string name="error_unauthorized">"API-Key nicht authorisiert."</string>
+    <string name="error_generic_url">"Bitte überprüfen Sie die angegebene URL. Ist es vielleicht ein System-URL?"</string>
+    <string name="error_system_url">"Verkürzen von System-URLs wird nicht unterstützt."</string>
+    <string name="error_404">"Diese kurz-URL existiert nicht."</string>
+    <string name="no_url">"Es wurde keine URL gefunden."</string>
+    <string name="error_quota">"Du hast dein Kontingent überschritten."</string>
+    <string name="error_internal">"Interner Serverfehler"</string>
+    <string name="error_misc">"Bitte überprüfe deine Polr-Einstellungen!"</string>
+    <string name="open_chooser_title">"Öffne diesen Link via"</string>
+    <string name="copied_to_clipboard">"In die Zwischenablage kopiert."</string>
+
+    <string name="expanded_url">"Dekomprimierte URL"</string>
+
+    <string name="activity_display_url">"Verkürzte URL"</string>
+
+    <string name="settings_domain">"Domain einstellen"</string>
+    <string name="settings_api_key">"API-Schlüssel einstellen"</string>
+
+
+    <!-- Strings for About Fragment -->
+    <string name="source_code">"Der Quellcode von LnkShortener ist auf &lt;a href=\"https://github.com/michaelachmann/LnkShortener\"&gt;Github&lt;/a&gt; verfügbar."</string>
+    <string name="about_changelog">"LnkShortener nutzt &lt;a href=\"https://github.com/cketti/ckChangeLog\"&gt; ckChangeLog &lt;/a&gt;. Das Paket ist unter der Apache 2.0-Lizenz freigegeben verfügbar."</string>
+    <string name="action_about">"Über"</string>
+    <string name="about_title">"LnkShortener ist unter der GPL 3-Lizenz veröffentlicht."</string>
+    <string name="about_licence" translatable="false">"Copyright (C) 2017 Michael Achmann  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.  You should have received a copy of the GNU General Public License along with this program. If not, see &lt;a href=\"http://www.gnu.org/licenses/\"&gt;http://www.gnu.org/licenses/&lt;/a&gt;."</string>
+    <string name="about_qrgen">"Die QR-Code Funktionalität wird von &lt;a href=\"https://github.com/kenglxn/QRGen\"&gt; QRGen &lt;/a&gt; angetrieben, die unter der Apache 2.0 lizenziert ist."</string>
+    <string name="logo_licence" translatable="false">"The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License."</string>
+    <string name="qrbutton_attribution">"Der Material QR-Code-Icon wurde von Austin Andrews (@Templarian) erstellt."</string>
+
+
+    <!-- Strings for Settings -->
+    <string name="android_id">"Einzigartige Installations-ID"</string>
+    <string name="username">"Benutzername"</string>
+    <string name="password">"Kennwort"</string>
+    <string name="run_setup">"Installationsassistent starten"</string>
+    <string name="server_settings">"Server-Einstellung"</string>
+    <string name="settings_username">"Benutzername"</string>
+    <string name="custom_settings">"Benutzerdefinierte Einstellungen"</string>
+    <string name="onenpm_settings_use">"1n.pm verwenden"</string>
+    <string name="onenpm_settings_title">"1n.pm Einstellungen"</string>
+    <string name="setup_summary">"Führe den Installationsassistenten aus, um dich bei 1n.pm anzumelden oder dein benutzerdefinierten Server-Daten hinzuzufügen."</string>
+
+
+    <string name="setup1_title">"LnkShortener-Setup"</string>
+    <string name="setup_introduction">"Willkommen bei LnkShortener! Bevor du deinen ersten Link kürzen kannst, musst du kurz dieses Setup ausführen. LnkShortener verkürzt URLs durch einen Web-Service. Du kannst den Standard-Verkürzungsdienst 1n.pm kostenlos nutzen oder deinen eigenen Polr-Server konfigurieren. Wenn du noch nie von Polr gehört hast wähle 1n.pm."</string>
+    <string name="setup_custom_server">"Ich will meine eigene Polr-Installation verwenden"</string>
+    <string name="setup_1npm">"Ich möchte 1n.pm verwenden (Standard)"</string>
+    <string name="setup_next">"Weiter"</string>
+    <string name="setup_choose_title">"Wie möchtest du LnkShortener benutzen?"</string>
+    <string name="setup_keep_settings">"Ich möchte, meine Einstellungen beibehalten"</string>
+    <string name="setup_button_back">"Zurück"</string>
+    <string name="setup_title_custom">"Fügen deinen eigenen Polr-Server hinzu"</string>
+    <string name="setup_check_api">"Prüfen"</string>
+    <string name="setup_custom_domain">"URL deiner Installation"</string>
+    <string name="setup_api_key">"API-Schlüssel"</string>
+    <string name="setup_use_default">"Mit 1n.pm"</string>
+    <string name="setup_anonymous">"Ich möchte anonym bleiben (Standard)"</string>
+    <string name="setup_login">"Anmeldung"</string>
+    <string name="setup_agree_tos">"Ich bin mit den Nutzungsbedingungen (TOS) für die Verwendung von 1n.pm einverstanden"</string>
+    <string name="setup_username">"Benutzername"</string>
+    <string name="setup_password">"Passwort"</string>
+    <string name="setup_signup">"Registrieren"</string>
+    <string name="setup_lost_password">"Passwort zurücksetzen"</string>
+    <string name="setup_title_tos">"Nutzungsbedingungen (TOS)"</string>
+    <string name="setup_login_signup">"Ich möchte micht anmelden oder registrieren"</string>
+    <string name="setup_create_anonymous_account">"Erstellen eines anonymen Kontos ..."</string>
+    <string name="setup_finish">"Fertig
+"</string>
+    <string name="setup_login_title">"1n.pm Anmeldung"</string>
+    <string name="setup_anonymous_username">"Anonymer Benutzername: %s"</string>
+    <string name="setup_email">"E-Mail"</string>
+    <string name="setup_signup_title">"1n.pm Registrierung"</string>
+    <string name="setup_created_uuid">"Anonymer Benutzernamen erfolgreich erstellt."</string>
+    <string name="setup_creating_uuid">"Erstellen eines anonymen Benutzernamen ..."</string>
+    <string name="setup_extracted_api_key">"API-Key erfolgreich erhalten."</string>
+    <string name="setup_extracting_api_key">"Beziehe API-Key ..."</string>
+    <string name="setup_testing_api">"Teste API-Key ..."</string>
+    <string name="setup_tested_api">"API-Key erfolgreich getestet."</string>
+    <string name="setup_example_username">"Benutzer1234"</string>
+    <string name="setup_exmaple_password">"S!ch3r35Hack0rPa55w0rt!"</string>
+    <string name="setup_onenpm_intro">"Du kannst 1n.pm anonym nutzen oder dich registrieren. Wenn du ein Benutzerkonto erstellst hast du Zugriff auf die Analyse-Daten auf der Website."</string>
+    <string name="setup_signup_done">"Anonymer Benutzer erfolgreich angemeldet."</string>
+    <string name="setup_useraccount_successfull">"%s erfolgreich angemeldet."</string>
+    <string name="setup_custom_successfull">"%s erfolgreich eingerichtet."</string>
+    <string name="setup_signing_in">"Melde %s an ..."</string>
+
+    <string name="error_network_timeout">"Bitte überprüfe deine Internetverbindung."</string>
+    <string name="error_network">"Ein Fehler ist aufgetreten. Bitte versuche es später noch einmal."</string>
+    <string name="error_login_failed">"Anmeldung fehlgeschlagen. Überprüfe deine Anmeldeinformationen."</string>
+    <string name="error_testing_api">"Testen des API-Schlüssels fehlgeschlagen. Bitte versuche es erneut."</string>
+    <string name="error_apikey">"API-Schlüssel vom Server nicht akzeptiert. Bitte überprüfe den eingegebenen API-Schlüssel."</string>
+    <string name="error_server">"Es kann keine Verbindung mit der API hergestellt werden. Bitte überprüfe die URL."</string>
+    <string name="setup_log">"Log"</string>
+    <string name="setup_loading_tos">\"Nutzungsbedingungen werden geladen...\"</string>
+
+
 </resources>

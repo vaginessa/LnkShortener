@@ -100,6 +100,8 @@ heard of Polr choose 1n.pm.</string>
     <string name="setup_useraccount_successfull">%s signed in successfully.</string>
     <string name="setup_custom_successfull">%s set up successfully.</string>
     <string name="setup_signing_in">Signing %s in&#8230;</string>
+    <string name="setup_loading_tos">Loading Terms of Service...</string>
+
 
     <string name="error_network_timeout">Please check your internet connection.</string>
     <string name="error_network">An error occurred. Please try again later.</string>

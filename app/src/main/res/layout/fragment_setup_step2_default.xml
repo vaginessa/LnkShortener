@@ -61,6 +61,16 @@
 
             </RadioGroup>
 
+            <TextView
+                android:id="@+id/webViewLoadingText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:text="@string/setup_loading_tos"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
             <WebView
                 android:id="@+id/webViewTOS"
                 android:layout_width="match_parent"

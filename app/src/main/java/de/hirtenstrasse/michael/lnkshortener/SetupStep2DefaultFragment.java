@@ -21,9 +21,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import java.util.zip.Inflater;
 
@@ -48,6 +50,7 @@ public class SetupStep2DefaultFragment extends Fragment {
 
         CheckBox tos = (CheckBox) myInflater.findViewById(R.id.tosCheckBox);
         final Button next = (Button) myInflater.findViewById(R.id.nextButton);
+        final TextView tosLoading = (TextView) myInflater.findViewById(R.id.webViewLoadingText);
 
         tos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -68,6 +71,13 @@ public class SetupStep2DefaultFragment extends Fragment {
         webview.getSettings().setJavaScriptEnabled(false);
         webview.setBackgroundColor(0x00000000);
         // It is saved in the assets
+        webview.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url){
+                tosLoading.setVisibility(View.GONE);
+            }
+        });
+
         webview.loadUrl("file:///android_asset/tos.html");
 
         return myInflater;
