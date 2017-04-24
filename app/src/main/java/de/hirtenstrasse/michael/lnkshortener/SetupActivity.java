@@ -311,7 +311,7 @@ public class SetupActivity extends AppCompatActivity {
         // We check the shared preferences for non-stock API-Settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String apiKey = sharedPref.getString("api_key", null);
-        if(!apiKey.matches("8a4a2c54d582048c31aa85baaeb3f8") && apiKey != ""){
+        if(!apiKey.matches("8a4a2c54d582048c31aa85baaeb3f8") && !apiKey.matches("")){
             oldData = true;
         }
         bundle.putBoolean("oldData", oldData);

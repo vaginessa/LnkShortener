@@ -110,6 +110,10 @@ heard of Polr choose 1n.pm.</string>
     <string name="error_apikey">API-Key not accepted by server. Please check the entered API-Key.</string>
     <string name="error_server">Cannot connect to API. Please check the URL.</string>
     <string name="setup_log">Log</string>
+    <string name="you_need_to_run_setup">You need to run setup!</string>
+    <string name="you_need_to_run_setup_subline">"Setup creates a unique API-Key for 1n.pm. If you don\'t run setup before %s you will not be able to shorten links anymore."</string>
+    <string name="run_setup_now">Run Setup Now</string>
+    <string name="you_need_to_run_setup_subline_expired">Your API-Key has expired, you need run setup before you can shorten any more Links.</string>
 
 
 </resources>

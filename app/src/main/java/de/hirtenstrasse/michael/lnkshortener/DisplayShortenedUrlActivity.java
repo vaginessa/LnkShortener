@@ -31,6 +31,7 @@ import android.support.v7.widget.Toolbar;
 
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -48,9 +49,15 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import net.glxn.qrgen.android.QRCode;
+
+import org.w3c.dom.Text;
 
 
 public class DisplayShortenedUrlActivity extends AppCompatActivity {
@@ -121,7 +128,54 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
         }
 
-        checkURL();
+
+        // Now we're checking for the sharedPref argument first_start
+        boolean firstStart = sharedPref.getBoolean("first_start", false);
+
+        // We create the date element to show the days left for the grace period
+        String expiry = "24.05.2017";
+        Boolean expired = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        Date strDate = null;
+        try {
+            strDate = sdf.parse(expiry);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (new Date().after(strDate)) {
+            expired = true;
+        }
+
+        String expiryLocalized = DateFormat.getDateInstance(DateFormat.SHORT).format(strDate);
+
+        // Since the standard API-Key was never set explicitly to the sharedPreferences
+        // but more so add as standard in Settings we now set explicitly the old API-Key
+        // if the call is made before the end of the grace period
+        if(apiKey.matches("") && !expired){
+            apiKey = "8a4a2c54d582048c31aa85baaeb3f8";
+        }
+
+        TextView setupTitle = (TextView) findViewById(R.id.needToRunSetupTitle);
+        TextView setupSubtext = (TextView) findViewById(R.id.needToRunSetupSubtext);
+        Button setupButton = (Button) findViewById(R.id.needToRunSetupButton);
+
+        // Since false is Default we display the messages and Button if firstStart = false (only if user uses
+        // the old standard API-Key
+        if(firstStart == false && apiKey.matches("8a4a2c54d582048c31aa85baaeb3f8")){
+            setupButton.setVisibility(View.VISIBLE);
+            setupSubtext.setVisibility(View.VISIBLE);
+            if(expired==false)
+                setupSubtext.setText(getString(R.string.you_need_to_run_setup_subline, expiryLocalized));
+            else
+                setupSubtext.setText(getString(R.string.you_need_to_run_setup_subline_expired));
+            setupTitle.setVisibility(View.VISIBLE);
+        }
+
+        if(firstStart == false && apiKey.matches("8a4a2c54d582048c31aa85baaeb3f8") && expired == true){
+            // TODO: Turn logical operators around.
+        } else {
+            checkURL();
+        }
 
     }
 

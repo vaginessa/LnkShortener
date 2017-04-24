@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#00BCD4</color>
     <color name="colorPrimaryDark">#006064</color>
-    <color name="colorAccent">#FF9100</color>
+    <color name="colorAccent">#ff9100</color>
     <color name="SetupPrimary">#00BCD4</color>
     <color name="SetupSecondaryTitle">#006064</color>
     <color name="SetupText">#ffffff</color>
