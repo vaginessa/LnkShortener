@@ -41,6 +41,8 @@
     <string name="about_qrgen">The QR code functionality is powered by <a href="https://github.com/kenglxn/QRGen">QRGen</a>, which is licensed under Apache 2.0</string>
     <string name="logo_licence" translatable="false">The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
     <string name="qrbutton_attribution">The material QR-Code button was made by Austin Andrews @Templarian</string>
+    <string name="translations">Translations</string>
+    <string name="translations_by">Translated to Japanese by naofum, to Chinese by eallion and to German by michaelachmann.</string>
 
 
     <!-- Strings for Settings -->
@@ -56,6 +58,8 @@
     <string name="setup_summary">Run the first-time setup in order to signup with 1n.pm or add your custom server data.</string>
 
 
+
+    <!-- Strings for Setup Assistang //-->
     <string name="setup1_title">LnkShortener Setup</string>
     <string name="setup_introduction">Welcome to LnkShortener! Before you can shorten your first link you will quickly need to run this setup. LnkShortener
     shortens URLs by using a web-service. You can use the default shortening-service 1n.pm for free or enter information of your own Polr-Server. If you have never
@@ -114,6 +118,7 @@ heard of Polr choose 1n.pm.</string>
     <string name="you_need_to_run_setup_subline">"Setup creates a unique API-Key for 1n.pm. If you don\'t run setup before %s you will not be able to shorten links anymore."</string>
     <string name="run_setup_now">Run Setup Now</string>
     <string name="you_need_to_run_setup_subline_expired">Your API-Key has expired, you need run setup before you can shorten any more Links.</string>
+
 
 
 </resources>

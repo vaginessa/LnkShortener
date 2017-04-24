@@ -63,6 +63,26 @@
 
     <Space
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/translations"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/translations_by"
+        android:textColor="@android:color/black" />
+
+    <Space
+        android:layout_width="match_parent"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content" />
 

@@ -111,6 +111,8 @@
     <string name="you_need_to_run_setup">Du musst den Installationsassistenten ausführen!</string>
     <string name="you_need_to_run_setup_subline">"\"Der Installationsassistent erstellt einen einzigartigen API-Schlüssel zur Verwendung mit 1n.pm. Wenn du den Assistenten nicht vorm %s ausführst kannst du keine URLs mehr kürzen.\" "</string>
     <string name="you_need_to_run_setup_subline_expired">Dein API-Schlüssel ist abgelaufen. Du musst den Installationsassistenten ausführen, bevor du weitere Links kürzen kannst.</string>
+    <string name="translations">Übersetzungen</string>
+    <string name="translations_by">Ins Japanische übersetzt von naofu, in das Chinesische von eallion und ins Deutsche von michaelachmann.</string>
 
 
 </resources>
