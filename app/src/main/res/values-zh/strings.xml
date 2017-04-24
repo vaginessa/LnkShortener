@@ -1,2 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">LnkShortener</string>
+
+    <!-- String for Menu in MainActivity -->
+    <string name="action_bug">Report a Bug</string>
+    <string name="activity_settings">设置</string>
+    <string name="action_history">历史记录</string>
+
+    <!-- Strings for MainActivity -->
+    <string name="shorten">压缩</string>
+
+    <!-- Strings for DisplayShortenedUrlActivity -->
+    <string name="error_toast">发生错误。</string>
+    <string name="chooser_title">分享此链接……</string>
+    <string name="error_valid_url">请输入正确的网址。</string>
+    <string name="error_unauthorized">API 未经授权。</string>
+    <string name="error_generic_url">请检查链接。它看起来像一个本地链接？</string>
+    <string name="error_system_url">不支持压缩本地链接。</string>
+    <string name="error_404">短链不存在。</string>
+    <string name="no_url">链接不存在。</string>
+    <string name="error_quota">超出限制。</string>
+    <string name="error_internal">内部服务器错误。</string>
+    <string name="error_misc">请检查 Polr 设置！</string>
+    <string name="open_chooser_title">打开此链接……</string>
+    <string name="copied_to_clipboard">已复制</string>
+
+    <string name="expanded_url">展开链接</string>
+
+    <string name="activity_display_url">短链 URL</string>
+
+    <string name="settings_domain">设置域名</string>
+    <string name="settings_api_key">设置 API key</string>
+
+
+
+    <!-- Strings for About Fragment -->
+    <string name="source_code">LnkShortener 源代码 <a href="https://github.com/michaelachmann/LnkShortener">Github</a></string>
+    <string name="about_changelog">LnkShortener 使用 <a href="https://github.com/cketti/ckChangeLog">ckChangeLog</a>记录版本更新，遵循 Apache 2.0 licence</string>
+    <string name="action_about">关于</string>
+    <string name="about_title">LnkShortener 遵循 GPL 3 Licence</string>
+    <string name="about_licence" translatable="false">Copyright (C) 2017 Michael Achmann  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.  You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</string>
+    <string name="about_qrgen">二维码使用 <a href="https://github.com/kenglxn/QRGen">QRGen</a>, 遵循 Apache 2.0 licence</string>
+    <string name="logo_licence" translatable="false">The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
+    <string name="qrbutton_attribution">The material QR-Code button was made by Austin Andrews @Templarian</string>
+</resources>
