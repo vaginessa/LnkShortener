@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.1.1" versioncode="6">
+        <change>Added Setup-Assistant</change>
+    </release>
     <release version="1.1.0" versioncode="5" >
         <change>Small Bugfixes</change>
         <change>Small fixes for English and German language</change>

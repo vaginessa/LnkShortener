@@ -29,6 +29,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -171,11 +172,8 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
             setupTitle.setVisibility(View.VISIBLE);
         }
 
-        if(firstStart == false && apiKey.matches("8a4a2c54d582048c31aa85baaeb3f8") && expired == true){
-            // TODO: Turn logical operators around.
-        } else {
+        if(!apiKey.matches("8a4a2c54d582048c31aa85baaeb3f8") || expired == false)
             checkURL();
-        }
 
     }
 
@@ -197,6 +195,11 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
 
     }
 
+    public void openSetup(View v)
+    {
+        Intent setupIntent = new Intent(this, SetupActivity.class);
+        startActivity(setupIntent);
+    }
     private void linkError(int errorCode) {
 
         // This is called if some error happened

@@ -25,32 +25,41 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/needToRunSetupTitle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="60dp"
-            android:text="@string/you_need_to_run_setup"
-            android:textAlignment="center"
-            android:visibility="gone"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/needToRunSetupSubtext"
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            android:text="@string/you_need_to_run_setup_subline"
-            android:textAlignment="center" />
+            <TextView
+                android:id="@+id/needToRunSetupTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="@string/you_need_to_run_setup"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/needToRunSetupButton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            android:text="@string/run_setup_now" />
+            <TextView
+                android:id="@+id/needToRunSetupSubtext"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:text="@string/you_need_to_run_setup_subline"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/needToRunSetupButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:onClick="openSetup"
+                android:text="@string/run_setup_now" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

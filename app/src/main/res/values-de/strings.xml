@@ -107,6 +107,10 @@
     <string name="error_server">"Es kann keine Verbindung mit der API hergestellt werden. Bitte überprüfe die URL."</string>
     <string name="setup_log">"Log"</string>
     <string name="setup_loading_tos">\"Nutzungsbedingungen werden geladen...\"</string>
+    <string name="run_setup_now">\"Installationsassistenten jetzt ausführen\"</string>
+    <string name="you_need_to_run_setup">Du musst den Installationsassistenten ausführen!</string>
+    <string name="you_need_to_run_setup_subline">"\"Der Installationsassistent erstellt einen einzigartigen API-Schlüssel zur Verwendung mit 1n.pm. Wenn du den Assistenten nicht vorm %s ausführst kannst du keine URLs mehr kürzen.\" "</string>
+    <string name="you_need_to_run_setup_subline_expired">Dein API-Schlüssel ist abgelaufen. Du musst den Installationsassistenten ausführen, bevor du weitere Links kürzen kannst.</string>
 
 
 </resources>

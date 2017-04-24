@@ -102,9 +102,6 @@ public class SetupActivity extends AppCompatActivity {
             // Here we check the response to see whether its google.com. If it is true we can assume that
             // Everything is working alright.
 
-
-            Log.d("GOG", response);
-
             if(response.matches("https://google.com")){
                 // It matches soo:
 
@@ -149,7 +146,7 @@ public class SetupActivity extends AppCompatActivity {
 
         @Override
         public void onErrorResponse(VolleyError error) {
-            Log.d("ERR", error.toString());
+
             if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                 // Is thrown if there's no network connection or server is down
                 Toast.makeText(context, getString(R.string.error_network_timeout),
@@ -199,9 +196,8 @@ public class SetupActivity extends AppCompatActivity {
 
             // The response is the plain HTML of the /admin page. We need to extract the API-Key
             // from the HTMML, therefore we pass it to renderApiKey. After that we test the API-Key.
-            for( String line : response.split("\n") ) {
-                Log.d( "HTML", line );
-            }
+
+
             apiKey = helper.renderApiKey(response);
             if(apiKey==null){
                 // The reason for that is probably that the user isn't API-Enabled or Login failed.
@@ -216,7 +212,6 @@ public class SetupActivity extends AppCompatActivity {
 
                 return;
             } else {
-                Log.d("API", apiKey);
                 helper.setApiKey(apiKey);
 
                 if (helper.getType() == 0) {
@@ -243,7 +238,7 @@ public class SetupActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ERR", error.toString());
+
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                     // Is thrown if there's no network connection or server is down
                     Toast.makeText(context, getString(R.string.error_network_timeout),
@@ -525,9 +520,6 @@ public class SetupActivity extends AppCompatActivity {
         // We set the type to custom
         helper.setType(2);
 
-        Log.d("SET", url);
-        Log.d("SET", apiEdit.getText().toString());
-
         helper.testAPI(testAPIListener,testAPIErrorListener);
 
 
@@ -553,6 +545,10 @@ public class SetupActivity extends AppCompatActivity {
 
         // Here we set the bit which tells the MainActivity whether to start SetupActivity or not
         editor.putBoolean("first_start", true);
+
+        // We set the TOS-Version for future use.
+        editor.putInt("tos_version",1);
+
         editor.commit();
     }
 

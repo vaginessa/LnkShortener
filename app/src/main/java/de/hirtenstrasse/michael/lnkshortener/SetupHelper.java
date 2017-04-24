@@ -133,11 +133,6 @@ public class SetupHelper {
         email = android_id+"@android.com";
 
         type = 0;
-
-        Log.d("USER", username);
-        Log.d("MAIL", email);
-        Log.d("PASS", password);
-
     }
 
     public void signUp(final Response.Listener<String> listenerResponse, final Response.ErrorListener listenerError){
@@ -216,10 +211,6 @@ public class SetupHelper {
 
                         final String token;
                         token = renderSignupPage(response);
-
-                        Log.d("TOK", "Retrieved token for Login:");
-                        Log.d("TOK", token);
-
 
                         // Network request for the Loginpage
                         String url = serverURL+"/login";
@@ -350,7 +341,6 @@ public class SetupHelper {
                     @Override
                     public void onResponse(String response) {
                         // If we receive a proper Response query the API in inverse
-                        Log.d("SHORT", response);
 
                         String encodedEnding = null;
 
