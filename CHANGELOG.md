@@ -1,3 +1,7 @@
+# 1.1.2
+## Versioncode 7
+* Fixed bug when signing up with chinese locale set
+
 # 1.1.1
 ## Versioncode 6
 * Added Setup-Assistant

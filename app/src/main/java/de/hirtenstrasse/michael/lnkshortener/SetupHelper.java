@@ -126,7 +126,7 @@ public class SetupHelper {
         String locale = Locale.getDefault().getCountry();
         locale = locale.toLowerCase();
 
-        String lanloc = Locale.getDefault().toString();
+        String lanloc = Locale.getDefault().toLanguageTag();
 
         username = "android-"+android_id+"-"+lanloc;
         password = randomPassword();
