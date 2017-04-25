@@ -2,7 +2,7 @@
     <string name="app_name">LnkShortener</string>
 
     <!-- String for Menu in MainActivity -->
-    <string name="action_bug">Report a Bug</string>
+    <string name="action_bug">提交 Bug</string>
     <string name="activity_settings">设置</string>
     <string name="action_history">历史记录</string>
 
@@ -31,8 +31,6 @@
     <string name="settings_domain">设置域名</string>
     <string name="settings_api_key">设置 API key</string>
 
-
-
     <!-- Strings for About Fragment -->
     <string name="source_code">LnkShortener 源代码 <a href="https://github.com/michaelachmann/LnkShortener">Github</a></string>
     <string name="about_changelog">LnkShortener 使用 <a href="https://github.com/cketti/ckChangeLog">ckChangeLog</a>记录版本更新，遵循 Apache 2.0 licence</string>
@@ -41,5 +39,74 @@
     <string name="about_licence" translatable="false">Copyright (C) 2017 Michael Achmann  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.  You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</string>
     <string name="about_qrgen">二维码使用 <a href="https://github.com/kenglxn/QRGen">QRGen</a>, 遵循 Apache 2.0 licence</string>
     <string name="logo_licence" translatable="false">The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
-    <string name="qrbutton_attribution">The material QR-Code button was made by Austin Andrews @Templarian</string>
+    <string name="qrbutton_attribution">The material QR-Code button was made by Austin Andrews @Templarian</string>	
+
+    <!-- Strings for Settings -->
+    <string name="android_id">唯一安装 ID</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="run_setup">开始配置</string>
+    <string name="server_settings">服务器设置</string>
+    <string name="settings_username">用户名</string>
+    <string name="custom_settings">常规设置</string>
+    <string name="onenpm_settings_use">使用 1n.pm</string>
+    <string name="onenpm_settings_title">1n.pm 设置</string>
+    <string name="setup_summary">需要注册一个 1n.pm 账号 或者 设置你自己的网站信息</string>
+
+
+    <string name="setup1_title">LnkShortener 设置</string>
+    <string name="setup_introduction">欢迎使用 LnkShortener ！ 想要使用 LnkShortener ，你必须要有一个使用 Polr 程序的网站。如果没有，可以使用默认的 1n.pm 。</string>
+    <string name="setup_custom_server">使用我自己的Polr网站</string>
+    <string name="setup_1npm">使用 1n.pm （默认）</string>
+    <string name="setup_next">下一步</string>
+    <string name="setup_choose_title">你想如何使用 LnkShortener ？</string>
+    <string name="setup_keep_settings">保留设置</string>
+    <string name="setup_button_back">返回</string>
+    <string name="setup_title_custom">添加自己的Polr网站</string>
+    <string name="setup_check_api">检查</string>
+    <string name="setup_custom_domain">网站域名</string>
+    <string name="setup_api_key">网站 API Key</string>
+    <string name="setup_use_default">使用 1n.pm</string>
+    <string name="setup_anonymous">使用匿名账号 (default)</string>
+    <string name="setup_login">登录</string>
+    <string name="setup_agree_tos">同意 1n.pm 的服务条款（TOS）</string>
+    <string name="setup_username">用户名</string>
+    <string name="setup_password">密码</string>
+    <string name="setup_signup">注册</string>
+    <string name="setup_lost_password">忘记密码？</string>
+    <string name="setup_title_tos">服务条款 (TOS)</string>
+    <string name="setup_login_signup">登录 / 注册？</string>
+    <string name="setup_create_anonymous_account">创建匿名账号&#8230;</string>
+    <string name="setup_finish">完成</string>
+    <string name="setup_login_title">1n.pm 登录</string>
+    <string name="setup_anonymous_username">匿名账号： %s</string>
+    <string name="setup_email">E-Mail</string>
+    <string name="setup_signup_title">1n.pm 注册</string>
+    <string name="setup_created_uuid">创建匿名账号成功。</string>
+    <string name="setup_creating_uuid">创建匿名账号&#8230;</string>
+    <string name="setup_extracted_api_key">成功获取 API-Key 。</string>
+    <string name="setup_extracting_api_key">API-Key 获取中&#8230;</string>
+    <string name="setup_testing_api">检测 API-Key&#8230;</string>
+    <string name="setup_tested_api">API-Key 检测成功。</string>
+    <string name="setup_example_username">user1234</string>
+    <string name="setup_exmaple_password">S4f3H4ck0rPa55w0rd!</string>
+    <string name="setup_onenpm_intro">你可以使用匿名账号压缩链接。当然也可以在 1n.pm 注册一个账号使用 1n.pm 压缩链接。</string>
+    <string name="setup_signup_done">匿名账号注册成功。</string>
+    <string name="setup_useraccount_successfull">%s 注册成功。</string>
+    <string name="setup_custom_successfull">%s 设置成功。</string>
+    <string name="setup_signing_in">%s 注册中&#8230;</string>
+    <string name="setup_loading_tos">加载服务条款...</string>
+
+
+    <string name="error_network_timeout">请检查网络连接。</string>
+    <string name="error_network">错误。请稍候重试…</string>
+    <string name="error_login_failed">登录失败。</string>
+    <string name="error_testing_api">API-Key 检测失败。请重试！</string>
+    <string name="error_apikey">API-Key 无效，请重新输入！</string>
+    <string name="error_server">API 无法连接，请检查 API 链接。</string>
+    <string name="setup_log">日志</string>
+    <string name="you_need_to_run_setup">必须配置才能使用！</string>
+    <string name="you_need_to_run_setup_subline">"必须创建一个 API key ，才能压缩链接。"</string>
+    <string name="run_setup_now">现在开始配置</string>
+    <string name="you_need_to_run_setup_subline_expired">API-Key 已失效，请重新配置。</string>
 </resources>

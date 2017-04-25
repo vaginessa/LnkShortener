@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog>
+    <release version="1.1.1" versioncode="6">
+    <change>Erstinstallationsassistent wurde hinzugefügt</change>
+    <change>Farbschema wurde geändert</change>
+    <change>Chinesische Übersetzung hinzugefügt</change>
+    </release>
     <release version="1.1.0" versioncode="5" >
         <change>Kleine Fehlerbehebungen</change>
         <change>Kleine Verbesserungen in der Englischen und Deutschen Übersetzung</change>

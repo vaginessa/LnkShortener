@@ -32,7 +32,6 @@
     <string name="settings_api_key">Set API key</string>
 
 
-
     <!-- Strings for About Fragment -->
     <string name="source_code">The source code of LnkShortener is available on <a href="https://github.com/michaelachmann/LnkShortener">Github</a></string>
     <string name="about_changelog">LnkShortener is using <a href="https://github.com/cketti/ckChangeLog">ckChangeLog</a> which is released under the Apache 2.0 licence</string>
@@ -42,4 +41,84 @@
     <string name="about_qrgen">The QR code functionality is powered by <a href="https://github.com/kenglxn/QRGen">QRGen</a>, which is licensed under Apache 2.0</string>
     <string name="logo_licence" translatable="false">The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
     <string name="qrbutton_attribution">The material QR-Code button was made by Austin Andrews @Templarian</string>
+    <string name="translations">Translations</string>
+    <string name="translations_by">Translated to Japanese by naofum, to Chinese by eallion and to German by michaelachmann.</string>
+
+
+    <!-- Strings for Settings -->
+    <string name="android_id">Unique Installation ID</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="run_setup">Run Setup</string>
+    <string name="server_settings">Server Settings</string>
+    <string name="settings_username">Username</string>
+    <string name="custom_settings">Custom Settings</string>
+    <string name="onenpm_settings_use">Use 1n.pm</string>
+    <string name="onenpm_settings_title">1n.pm Settings</string>
+    <string name="setup_summary">Run the first-time setup in order to signup with 1n.pm or add your custom server data.</string>
+
+
+
+    <!-- Strings for Setup Assistang //-->
+    <string name="setup1_title">LnkShortener Setup</string>
+    <string name="setup_introduction">Welcome to LnkShortener! Before you can shorten your first link you will quickly need to run this setup. LnkShortener
+    shortens URLs by using a web-service. You can use the default shortening-service 1n.pm for free or enter information of your own Polr-Server. If you have never
+heard of Polr choose 1n.pm.</string>
+    <string name="setup_custom_server">I want to use my own Polr-Installation</string>
+    <string name="setup_1npm">I want to use 1n.pm (default)</string>
+    <string name="setup_next">Next</string>
+    <string name="setup_choose_title">How do you want to use LnkShortener?</string>
+    <string name="setup_keep_settings">I want to keep my settings</string>
+    <string name="setup_button_back">Back</string>
+    <string name="setup_title_custom">Add your own Polr-Server</string>
+    <string name="setup_check_api">Check</string>
+    <string name="setup_custom_domain">URL of your installation</string>
+    <string name="setup_api_key">API Key</string>
+    <string name="setup_use_default">Using 1n.pm</string>
+    <string name="setup_anonymous">I want to stay anonymous (default)</string>
+    <string name="setup_login">Login</string>
+    <string name="setup_agree_tos">I hereby agree to the Terms of Service (TOS) for using 1n.pm</string>
+    <string name="setup_username">Username</string>
+    <string name="setup_password">Password</string>
+    <string name="setup_signup">Signup</string>
+    <string name="setup_lost_password">Reset Password</string>
+    <string name="setup_title_tos">Terms of Service (TOS)</string>
+    <string name="setup_login_signup">I want to login or sign up</string>
+    <string name="setup_create_anonymous_account">Creating an anonymous account&#8230;</string>
+    <string name="setup_finish">Finish</string>
+    <string name="setup_login_title">1n.pm Login</string>
+    <string name="setup_anonymous_username">Anonymous username: %s</string>
+    <string name="setup_email">E-Mail</string>
+    <string name="setup_signup_title">1n.pm Sign-up</string>
+    <string name="setup_created_uuid">Created an anonymous username successfully.</string>
+    <string name="setup_creating_uuid">Creating an anonymous username&#8230;</string>
+    <string name="setup_extracted_api_key">Obtained API-Key successfully.</string>
+    <string name="setup_extracting_api_key">Obtaining API-Key&#8230;</string>
+    <string name="setup_testing_api">Testing API-Key&#8230;</string>
+    <string name="setup_tested_api">Tested API-Key successfully.</string>
+    <string name="setup_example_username">user1234</string>
+    <string name="setup_exmaple_password">S4f3H4ck0rPa55w0rd!</string>
+    <string name="setup_onenpm_intro">You can use 1n.pm anonymously or sign-up. If you create
+    a user account you can access analytics on 1n.pm websites.</string>
+    <string name="setup_signup_done">Anonymous user successfully signed up.</string>
+    <string name="setup_useraccount_successfull">%s signed in successfully.</string>
+    <string name="setup_custom_successfull">%s set up successfully.</string>
+    <string name="setup_signing_in">Signing %s in&#8230;</string>
+    <string name="setup_loading_tos">Loading Terms of Service...</string>
+
+
+    <string name="error_network_timeout">Please check your internet connection.</string>
+    <string name="error_network">An error occurred. Please try again later.</string>
+    <string name="error_login_failed">Login failed. Check your credentials.</string>
+    <string name="error_testing_api">Testing API-Key failed. Please try again.</string>
+    <string name="error_apikey">API-Key not accepted by server. Please check the entered API-Key.</string>
+    <string name="error_server">Cannot connect to API. Please check the URL.</string>
+    <string name="setup_log">Log</string>
+    <string name="you_need_to_run_setup">You need to run setup!</string>
+    <string name="you_need_to_run_setup_subline">"Setup creates a unique API-Key for 1n.pm. If you don\'t run setup before %s you will not be able to shorten links anymore."</string>
+    <string name="run_setup_now">Run Setup Now</string>
+    <string name="you_need_to_run_setup_subline_expired">Your API-Key has expired, you need run setup before you can shorten any more Links.</string>
+
+
+
 </resources>

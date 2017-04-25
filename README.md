@@ -1,10 +1,8 @@
-<img src="/icons/LnkShortenerRobo512.png" align="left" height="114">
-# LnkShortener [![Licence](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://img.shields.io/badge/license-GPLv3-blue.svg) [![Twitter Follow](https://img.shields.io/twitter/follow/lnkshortener.svg?style=social&label=Follow)](https://twitter.com/lnkshortener) <sup> [Facebook](https://fb.com/lnkshortener) | [Website](https://android.1n.pm)</sup>
-
+<img src="/icons/LnkShortenerRobo512.png" style="float:left; height:114px" height="114">
 
 LnkShortener is an Android app for shortening URLs. It is using [Polr](https://github.com/Cydrobolt/polr), an open-source URL shortener
 
-**[Getting Started](#getting-started) | [App Stores](#app-stores) | [Contribute](#contribute)**
+**[Getting Started](#getting-started) | [App Stores](#app-stores) | [Contribute](#contribute) | [Twitter @Lnkshortener](https://twitter.com/LnkShortener) | [Website](https://android.1n.pm)**
 
 <img style="float:right; height:500px" height="500" align="right" src="/metadata/images/ScreenshotFramedEnglish.png" >
 
