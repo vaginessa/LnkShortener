@@ -1,6 +1,8 @@
 # 1.1.1
 ## Versioncode 6
 * Added Setup-Assistant
+* Changed color theme
+* Added Chinese translation
 
 # 1.1.0
 ## Versioncode 5

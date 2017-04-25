@@ -2,6 +2,8 @@
 <changelog>
     <release version="1.1.1" versioncode="6">
         <change>Added Setup-Assistant</change>
+        <change>Changed color theme</change>
+        <change>Added Chinese translation</change>
     </release>
     <release version="1.1.0" versioncode="5" >
         <change>Small Bugfixes</change>
