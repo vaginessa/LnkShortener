@@ -31,7 +31,6 @@
     <string name="settings_domain">设置域名</string>
     <string name="settings_api_key">设置 API key</string>
 
-
     <!-- Strings for About Fragment -->
     <string name="source_code">LnkShortener 源代码 <a href="https://github.com/michaelachmann/LnkShortener">Github</a></string>
     <string name="about_changelog">LnkShortener 使用 <a href="https://github.com/cketti/ckChangeLog">ckChangeLog</a>记录版本更新，遵循 Apache 2.0 licence</string>
@@ -40,8 +39,7 @@
     <string name="about_licence" translatable="false">Copyright (C) 2017 Michael Achmann  This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.  You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</string>
     <string name="about_qrgen">二维码使用 <a href="https://github.com/kenglxn/QRGen">QRGen</a>, 遵循 Apache 2.0 licence</string>
     <string name="logo_licence" translatable="false">The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
-    <string name="qrbutton_attribution">The material QR-Code button was made by Austin Andrews @Templarian</string>
-	
+    <string name="qrbutton_attribution">The material QR-Code button was made by Austin Andrews @Templarian</string>	
 
     <!-- Strings for Settings -->
     <string name="android_id">唯一安装 ID</string>
