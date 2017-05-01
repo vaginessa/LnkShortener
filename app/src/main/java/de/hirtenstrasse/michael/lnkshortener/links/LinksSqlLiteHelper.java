@@ -1,4 +1,4 @@
-package de.hirtenstrasse.michael.lnkshortener;
+package de.hirtenstrasse.michael.lnkshortener.links;
 
 // Copyright (C) 2017 Michael Achmann
 
@@ -27,16 +27,31 @@ public class LinksSqlLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SHORT_LINK = "short_link";
     public static final String COLUMN_LONG_LINK = "long_link";
     public static final String COLUMN_ADDED = "added";
+    public static final String COLUMN_LINK_TITLE = "link_title";
+    public static final String COLUMN_LINK_IMAGE = "link_image";
+    public static final String COLUMN_STARRED = "starred";
+    public static final String COLUMN_CATEGORY = "category";
+    public static final String COLUMN_CLICKS = "clicks";
+    public static final String COLUMN_LAST_UPDATED = "last_updated";
+    public static final String COLUMN_SECRET = "secret";
 
     private static final String DATABASE_NAME = "links.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String DATABASE_CREATE = "create table "
                                             + TABLE_LINKS + "( " + COLUMN_ID
                                             + "integer primary key autoincrement, "
-                                            + COLUMN_LONG_LINK + " text no null "
+                                            + COLUMN_LONG_LINK + " text not null "
                                             + COLUMN_SHORT_LINK + " text not null "
-                                            + COLUMN_ADDED + " NOT NULL DEFAULT CURRENT_TIMESTAMP);";
+                                            + COLUMN_ADDED + " integer not null default current_timestamp"
+                                            + COLUMN_LINK_TITLE + " text no null "
+                                            + COLUMN_LINK_IMAGE + " blob "
+                                            + COLUMN_STARRED + " integer "
+                                            + COLUMN_CATEGORY + " integer "
+                                            + COLUMN_CLICKS + " integer "
+                                            + COLUMN_LAST_UPDATED + " not null default current_timestamp "
+                                            + COLUMN_SECRET + " integer "
+                                            + ");";
 
     public LinksSqlLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

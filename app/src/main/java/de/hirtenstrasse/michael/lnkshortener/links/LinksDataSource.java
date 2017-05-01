@@ -1,4 +1,4 @@
-package de.hirtenstrasse.michael.lnkshortener;
+package de.hirtenstrasse.michael.lnkshortener.links;
 
 import android.content.ContentValues;
 import android.content.Context;
