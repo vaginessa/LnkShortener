@@ -8,7 +8,7 @@
     <item android:id="@+id/action_history"
         android:title="@string/action_history"
         app:showAsAction="always"
-        android:visible="false"
+        android:visible="true"
         android:icon="@drawable/ic_history_white_24dp"
         />
 

@@ -4,5 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="disabled_txt">14dp</dimen>
-    <item name="disabled_t" type="dimen" format="float">21.00</item>
+    <item name="disabled_t" format="float" type="dimen">21.00</item>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

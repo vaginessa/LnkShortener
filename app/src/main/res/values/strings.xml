@@ -58,7 +58,6 @@
     <string name="setup_summary">Run the first-time setup in order to signup with 1n.pm or add your custom server data.</string>
 
 
-
     <!-- Strings for Setup Assistang //-->
     <string name="setup1_title">LnkShortener Setup</string>
     <string name="setup_introduction">Welcome to LnkShortener! Before you can shorten your first link you will quickly need to run this setup. LnkShortener
@@ -118,7 +117,7 @@ heard of Polr choose 1n.pm.</string>
     <string name="you_need_to_run_setup_subline">"Setup creates a unique API-Key for 1n.pm. If you don\'t run setup before %s you will not be able to shorten links anymore."</string>
     <string name="run_setup_now">Run Setup Now</string>
     <string name="you_need_to_run_setup_subline_expired">Your API-Key has expired, you need run setup before you can shorten any more Links.</string>
-
+    <string name="title_activity_screenshot_test">ScreenshotTestActivity</string>
 
 
 </resources>

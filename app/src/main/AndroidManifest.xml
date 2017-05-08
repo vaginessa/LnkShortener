@@ -45,13 +45,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisplayShortenedUrlActivity" />
         </activity>
-        <activity android:name=".SetupActivity"
+        <activity
+            android:name=".SetupActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="Setup">
             <intent-filter>
                 <action android:name="de.hirtenstrasse.michael.lnkshortener.SetupActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ScreenshotTestActivity"
+            android:label="@string/title_activity_screenshot_test"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.hirtenstrasse.michael.lnkshortener.MainActivity" />
         </activity>
     </application>
 

@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this,SettingsActivity.class);
                 startActivity(intent);
 
-                return true;
+                break;
 
             case R.id.action_bug:
                 // Opens Issuetracker on Github in a Browser
@@ -183,19 +183,23 @@ public class MainActivity extends AppCompatActivity {
                 intentBug.setData(Uri.parse(url));
                 startActivity(intentBug);
 
-                return true;
+                break;
 
             case R.id.action_history:
                 // Perparing Fragment
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                /* FragmentTransaction linkHistory = getFragmentManager().beginTransaction();
 
                 // LinkHistoryFragment is the start screen
                 LinkHistoryFragment linkHistoryFragment = new LinkHistoryFragment();
-
+                Log.d("CLICK", "Action_History clicked");
                 // Finally LinkHistoryFragment is added to the main container
-                transaction.replace(R.id.fragment_container, linkHistoryFragment);
-                transaction.addToBackStack("");
-                transaction.commit();
+                linkHistory.replace(R.id.fragment_container, linkHistoryFragment);
+                linkHistory.addToBackStack("");
+                linkHistory.commit();
+                */
+                Intent intent1 = new Intent(this, ScreenshotTestActivity.class);
+                startActivity(intent1);
+                break;
 
             case R.id.action_about:
                 // Perparing Fragment
@@ -209,13 +213,16 @@ public class MainActivity extends AppCompatActivity {
                 aboutTransaction.addToBackStack("");
                 aboutTransaction.commit();
 
+                break;
 
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
+                Log.d("CLICK", "Default invoked");
                 return super.onOptionsItemSelected(item);
+            }
 
-        }
+            return true;
     }
 
     // Opens the GitHub Repo in a Browser
