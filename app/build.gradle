@@ -45,5 +45,8 @@ dependencies {
     compile 'com.github.kenglxn.QRGen:android:2.2.0'
     compile 'de.cketti.library.changelog:ckchangelog:1.2.2'
     compile 'org.jsoup:jsoup:1.10.2'
+    compile 'com.android.support:palette-v7:25.3.1'
+
     testCompile 'junit:junit:4.12'
+
 }
