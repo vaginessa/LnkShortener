@@ -9,4 +9,5 @@
     <color name="SetupButtonBackground">#b3e5fc</color>
     <color name="SetupButtonText">#006064</color>
     <color name="colorBackground">#E0F7FA</color>
+    <color name="text">#89000000</color>
 </resources>

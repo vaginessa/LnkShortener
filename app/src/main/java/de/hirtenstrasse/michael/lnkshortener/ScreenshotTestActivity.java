@@ -108,7 +108,7 @@ public class ScreenshotTestActivity extends AppCompatActivity {
             }
 
 
-            new DownloadImageTask(imageview2).execute(og_image);
+      //      new DownloadImageTask(imageview2).execute(og_image);
             Log.d("IMG", "Found image: " + og_image);
         }
 
@@ -141,7 +141,7 @@ public class ScreenshotTestActivity extends AppCompatActivity {
 
         // Declaring the UI-Elements
         imageview = (ImageView) findViewById(R.id.imageview);
-        imageview2 = (ImageView) findViewById(R.id.imageview2);
+     //   imageview2 = (ImageView) findViewById(R.id.imageview2);
         editText = (EditText) findViewById(R.id.urlEditText);
         url = editText.getText().toString();
 
@@ -191,14 +191,17 @@ public class ScreenshotTestActivity extends AppCompatActivity {
 
                         webview1.setDrawingCacheEnabled(true);
                         webview1.buildDrawingCache();
+
+                        // Testing the 16:9 Ratio for the pictures on cards
+                        int height = size.x*9/16;
                         Bitmap bitmap = Bitmap.createBitmap(webview1.getMeasuredWidth(),
-                                1000, Bitmap.Config.ARGB_8888);
+                                height, Bitmap.Config.ARGB_8888);
                         Canvas c = new Canvas(bitmap);
 
                         int iHeight = bitmap.getHeight();
                         Paint paint = new Paint();
 
-                        c.drawBitmap(bitmap, 0,iHeight,paint);
+                        c.drawBitmap(bitmap, 0, height,paint);
 
                         webview1.draw(c);
 
