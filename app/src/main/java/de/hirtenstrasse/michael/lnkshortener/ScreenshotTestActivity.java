@@ -38,7 +38,7 @@ import java.io.InputStream;
 public class ScreenshotTestActivity extends AppCompatActivity {
 
     WebView webview;
-    ImageView imageview;
+    ImageView imageview, imageview2;
     EditText editText;
     String url;
     ProgressBar progressBar;
@@ -108,7 +108,7 @@ public class ScreenshotTestActivity extends AppCompatActivity {
             }
 
 
-          //  new DownloadImageTask(imageview).execute(og_image);
+            new DownloadImageTask(imageview2).execute(og_image);
             Log.d("IMG", "Found image: " + og_image);
         }
 
@@ -141,6 +141,7 @@ public class ScreenshotTestActivity extends AppCompatActivity {
 
         // Declaring the UI-Elements
         imageview = (ImageView) findViewById(R.id.imageview);
+        imageview2 = (ImageView) findViewById(R.id.imageview2);
         editText = (EditText) findViewById(R.id.urlEditText);
         url = editText.getText().toString();
 
@@ -168,8 +169,8 @@ public class ScreenshotTestActivity extends AppCompatActivity {
 
         Log.d("HTML", "Render HTML "+url);
         webview.loadUrl(url);
-        webview.measure(size.x,800);
-        webview.layout(0,0,size.x,800);
+        webview.measure(size.x,size.y);
+        webview.layout(0,0,size.x,size.y);
         // webview.setInitialScale(0);
         webview.getSettings().setLoadWithOverviewMode(true);
         webview.getSettings().setUseWideViewPort(true);
@@ -191,7 +192,7 @@ public class ScreenshotTestActivity extends AppCompatActivity {
                         webview1.setDrawingCacheEnabled(true);
                         webview1.buildDrawingCache();
                         Bitmap bitmap = Bitmap.createBitmap(webview1.getMeasuredWidth(),
-                                800, Bitmap.Config.ARGB_8888);
+                                1000, Bitmap.Config.ARGB_8888);
                         Canvas c = new Canvas(bitmap);
 
                         int iHeight = bitmap.getHeight();
