@@ -72,11 +72,16 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
     private UrlManager urlmanager;
     private boolean foreignIntent = false;
 
+    private PolrAPI api;
+    private Link link;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         // URLManager provides all functions handling URLs
         urlmanager = new UrlManager(this);
+
+
 
 
         // Setting up Variables
@@ -87,6 +92,11 @@ public class DisplayShortenedUrlActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         apiKey = sharedPref.getString("api_key", null);
         apiUrl = sharedPref.getString("url", null);
+
+        api = new PolrAPI(this, apiKey, apiUrl);
+
+        link = new Link(this,api);
+
 
         super.onCreate(savedInstanceState);
 
